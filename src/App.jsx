@@ -1,4 +1,6 @@
-import './index.css';console.log('App component rendered');
+import './index.css';
+import React from 'react';
+console.log('App component rendered');
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
@@ -7,6 +9,7 @@ import About from "./components/About"
 import Services from "./components/Services"
 import Clients from "./components/Clients"
 import Contact from "./components/Contact"
+
 
 
 function App() {
@@ -30,4 +33,3 @@ function App() {
 }
 
 export default App
-

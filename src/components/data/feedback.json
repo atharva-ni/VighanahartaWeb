@@ -1,0 +1,25 @@
+{
+    "testimonials": [
+      {
+        "id": 1,
+        "quote": "Their innovative solutions and commitment to quality have transformed our manufacturing processes. Exceptional service!",
+        "author": "John Doe",
+        "position": "CEO",
+        "company": "XYZ Corp"
+      },
+      {
+        "id": 2,
+        "quote": "The team's expertise in precision engineering has significantly improved our production efficiency.",
+        "author": "Sarah Smith",
+        "position": "Operations Director",
+        "company": "ABC Manufacturing"
+      },
+      {
+        "id": 3,
+        "quote": "Outstanding consulting services that helped us modernize our entire manufacturing line.",
+        "author": "Michael Johnson",
+        "position": "Plant Manager",
+        "company": "Industrial Solutions Ltd"
+      }
+    ]
+  }
