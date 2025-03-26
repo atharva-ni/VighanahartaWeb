@@ -39,7 +39,7 @@ const Header = () => {
           <motion.img 
             src="src/assets/Images/logo.png" 
             alt="Logo" 
-            className="w-60 h-60 object-contain"
+            className="w-65 h-65 object-contain"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}

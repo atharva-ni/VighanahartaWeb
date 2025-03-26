@@ -58,7 +58,7 @@ const Footer = () => {
             rel="noopener noreferrer" 
             className="footer-link text-gray-300 hover:text-white"
           >
-            123 Street, City, Country
+            Dehu–Alandi Road, Chikhali , Pune-411062
           </a>
         </p>
         <p className="mt-2">
