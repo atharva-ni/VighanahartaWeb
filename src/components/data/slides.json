@@ -2,17 +2,17 @@
     "slides": [
       {
         "id": 1,
-        "image": "/services/s1.jpg",
+        "image": "/public/services/s1.jpg",
         "title": "Advanced Manufacturing Solutions"
       },
       {
         "id": 2,
-        "image": "/services/s2.jpg",
+        "image": "/public/services/s2.jpg",
         "title": "Precision Engineering"
       },
       {
         "id": 3,
-        "image": "/services/s3.jpg",
+        "image": "/public/services/s3.jpg",
         "title": "Quality Assurance"
       }
     ]
