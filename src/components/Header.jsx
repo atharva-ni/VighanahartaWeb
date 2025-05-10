@@ -38,7 +38,7 @@ const Header = () => {
       >
         <nav className="container mx-auto px-6 flex justify-between items-center h-16">
           <motion.img 
-            src="src/assets/Images/logo.png" 
+            src="/services/logo.png" 
             alt="Logo" 
             className="w-65 h-65 object-contain"
             initial={{ scale: 0.8, opacity: 0 }}
