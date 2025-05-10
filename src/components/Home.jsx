@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Building2, Wrench, Users } from "lucide-react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase.js"; // Adjust path if needed
+import { db } from "../firebase.js"; // adjust path if needed
 
 function App() {
   const [portfolioData, setPortfolioData] = useState({ projects: [] });
@@ -13,31 +13,37 @@ function App() {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProjects = async () => {
       try {
-        const [portfolioSnapshot, testimonialsSnapshot] = await Promise.all([
-          getDocs(collection(db, "portfolio")),
-          getDocs(collection(db, "testimonials")),
-        ]);
-
-        const projects = portfolioSnapshot.docs.map((doc) => ({
+        const querySnapshot = await getDocs(collection(db, "portfolio"));
+        const projects = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-
-        const testimonials = testimonialsSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
         setPortfolioData({ projects });
-        setFeedbackData({ testimonials });
       } catch (error) {
-        console.error("Error fetching data from Firestore:", error);
+        console.error("Error fetching projects from Firestore:", error);
       }
     };
 
-    fetchData();
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "testimonials"));
+        const testimonials = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setFeedbackData({ testimonials });
+      } catch (error) {
+        console.error("Error fetching testimonials from Firestore:", error);
+      }
+    };
+
+    fetchTestimonials();
   }, []);
 
   useEffect(() => {
@@ -48,33 +54,36 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const feedbackInterval = setInterval(() => {
+    const interval = setInterval(() => {
       setCurrentFeedback(
         (prevIndex) => (prevIndex + 1) % feedbackData.testimonials.length
       );
     }, 7000);
-
-    return () => clearInterval(feedbackInterval);
+    return () => clearInterval(interval);
   }, [feedbackData.testimonials.length]);
 
   useEffect(() => {
-    const slideInterval = setInterval(() => {
+    const interval = setInterval(() => {
       setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
     }, 7000);
-
-    return () => clearInterval(slideInterval);
+    return () => clearInterval(interval);
   }, [slides.length]);
 
   useEffect(() => {
-    const projectInterval = setInterval(() => {
+    const interval = setInterval(() => {
       setCurrentProjectIndex(
         (prevIndex) => (prevIndex + 1) % Math.ceil(portfolioData.projects.length / 3)
       );
     }, 7000);
-
-    return () => clearInterval(projectInterval);
+    return () => clearInterval(interval);
   }, [portfolioData.projects.length]);
 
+  const getProjectsToShow = () => {
+    const startIndex = currentProjectIndex * 3;
+    return portfolioData.projects.slice(startIndex, startIndex + 3);
+  };
+
+  
   useEffect(() => {
     const nextIndex = (currentProjectIndex + 1) % Math.ceil(portfolioData.projects.length / 3);
     const nextProjects = portfolioData.projects.slice(nextIndex * 3, nextIndex * 3 + 3);
@@ -84,27 +93,23 @@ function App() {
     });
   }, [currentProjectIndex, portfolioData.projects]);
 
-  const getProjectsToShow = useMemo(() => {
-    const startIndex = currentProjectIndex * 3;
-    return portfolioData.projects.slice(startIndex, startIndex + 3);
-  }, [currentProjectIndex, portfolioData.projects]);
-
   return (
     <div className="min-h-screen bg-white">
-      {/* Header Section */}
+     
       <motion.section className="container mx-auto px-6 py-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
             <h1 className="text-blue-600 text-6xl font-bold leading-tight mb-6">
               Crafting Excellence
               <br />
               & Engineering Trust
             </h1>
             <p className="text-lg text-gray-600 mb-6 max-w-2xl">
-              Vighanaharta Engineers, established in 2017, delivers precision hardware and fabrication
-              solutions with end-to-end manufacturing capabilities. With 22+ years of hands-on
-              expertise, a 5000 sq.ft. shaded shop, and trusted clients.
+              Vighanaharta Engineers, established in 2017, delivers precision hardware and fabrication solutions with end-to-end manufacturing capabilities. With 22+ years of hands-on expertise, a 5000 sq.ft. shaded shop, and trusted clients.
             </p>
             <a
               href="Services"
@@ -114,7 +119,6 @@ function App() {
             </a>
           </motion.div>
 
-          {/* Image Slider */}
           <motion.div
             className="relative"
             initial={{ opacity: 0 }}
@@ -134,7 +138,6 @@ function App() {
           </motion.div>
         </div>
       </motion.section>
-
 
     
       <motion.section
