@@ -74,7 +74,7 @@ function About() {
         <h2 className="text-center h-18 text-3xl font-bold mb-4 text-black">Management</h2>
         <div className="space-y-8">
           <div className="text-center">
-            <img src="src/assets/Images/profile.webp" alt="Nilesh" className="w-35 h-35 mx-auto rounded-full shadow-lg" />
+            <img src="/services/profile.webp" alt="Nilesh" className="w-35 h-35 mx-auto rounded-full shadow-lg" />
             <p className="mt-4 text-lg font-semibold text-gray-700">Nilesh</p>
             <p className="text-gray-500">Proprietor and Mechanical Engineer</p>
           </div>
@@ -82,15 +82,15 @@ function About() {
             {[{
               name: "Swati",
               role: "Accountant",
-              image: "src/assets/Images/profile.webp"
+              image: "/services/profile.webp"
             }, {
               name: "Avinash",
               role: "Plant 1 Manager",
-              image: "src/assets/Images/profile.webp"
+              image: "/services/profile.webp"
             }, {
               name: "Bharat",
               role: "Plant 2 Manager",
-              image: "src/assets/Images/profile.webp"
+              image: "/services/profile.webp"
             }].map((member, index) => (
               <div key={index} className="text-center">
                 <img src={member.image} alt={member.name} className="w-28 h-28 mx-auto rounded-full shadow-lg" />
