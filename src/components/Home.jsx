@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Building2, Wrench, Users } from "lucide-react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "./admin/firebase"; // adjust path if needed
+import { db } from "../firebase.js"; // adjust path if needed
 
 function App() {
   const [portfolioData, setPortfolioData] = useState({ projects: [] });

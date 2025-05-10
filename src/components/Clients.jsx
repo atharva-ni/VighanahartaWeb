@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from "./admin/firebase"; // adjust path if needed
+import { db } from "../firebase.js"; // adjust path if needed
 import clientsData from './data/clients.json';
 
 const Clients = () => {

@@ -1,4 +1,4 @@
-// src/components/admin/firebase.js
+
 
 // Import Firebase SDK modules
 import { initializeApp } from "firebase/app";
