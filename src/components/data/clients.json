@@ -3,37 +3,37 @@
       {
         "id": 1,
         "name": "Thermax Ltd.",
-        "logo": "src/assets/Clients/Thermax.png",
+        "logo": "/services/Thermax.png",
         "industry": "Energy & Environment"
       },
       {
         "id": 2,
         "name": "Beumer India Pvt Ltd.",
-        "logo": "src/assets/Clients/beumer.png",
+        "logo": "/services/beumer.png",
         "industry": "Material Handling"
       },
       {
         "id": 3,
         "name": "Tsubaki Conveyor Pvt Ltd.",
-        "logo": "src/assets/Clients/tsubaki.jpeg",
+        "logo": "/services/tsubaki.jpeg",
         "industry": "Manufacturing"
       },
       {
         "id": 4,
         "name": "Forbes Marshall Pvt Ltd.",
-        "logo": "src/assets/Clients/forbes.webp",
+        "logo": "/services/forbes.webp",
         "industry": "Industrial Solutions"
       },
       {
         "id": 5,
         "name": "Mahindra & Mahindra Pune",
-        "logo": "src/assets/Clients/Mahindra.jpg",
+        "logo": "/services/Mahindra.jpg",
         "industry": "Automotive"
       },
       {
         "id": 6,
         "name": "Kishor Pump,Pune",
-        "logo": "src/assets/Clients/kishor.png",
+        "logo": "/services/kishor.png",
         "industry": "Industrial Equipment"
       }
     ]
