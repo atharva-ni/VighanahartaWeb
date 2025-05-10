@@ -1,4 +1,3 @@
-'use client'
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, Facebook, Twitter, Linkedin, Youtube } from "lucide-react"
 import { useState } from "react"
