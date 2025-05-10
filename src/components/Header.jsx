@@ -25,6 +25,7 @@ const Header = () => {
     { href: "/services", label: "Services" },
     { href: "/clients", label: "Clients" },
     { href: "/contact", label: "Contact" },
+    { href: "/admin", label: "Admin" },
   ];
 
   return (
@@ -82,7 +83,6 @@ const Header = () => {
         </nav>
       </motion.header>
       
-      {/* Spacer to ensure content starts below the navbar */}
       <div className="h-20 md:h-24"></div>
     </>
   );

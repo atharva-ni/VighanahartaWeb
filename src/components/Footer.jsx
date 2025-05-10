@@ -35,12 +35,7 @@ const Footer = () => {
           <ul>
             <li><a href="/contact" className="footer-link">Get in Touch</a></li>
           </ul>
-          <div className="flex space-x-3 mt-3">
-            <a href="#" className="social-icon"><Facebook size={20} /></a>
-            <a href="#" className="social-icon"><Twitter size={20} /></a>
-            <a href="#" className="social-icon"><Instagram size={20} /></a>
-            <a href="#" className="social-icon"><Linkedin size={20} /></a>
-          </div>
+          
         </div>
       </motion.div>
 
@@ -53,12 +48,12 @@ const Footer = () => {
         <p className="flex justify-center items-center space-x-2">
           <MapPin size={18} className="text-white" />
           <a 
-            href="https://goo.gl/maps/YOUR_LOCATION_LINK" 
+            
             target="_blank" 
             rel="noopener noreferrer" 
             className="footer-link text-gray-300 hover:text-white"
           >
-            Dehu–Alandi Road, Chikhali , Pune-411062
+            Dehu–Alandi Road, Chikhali, Pune-411062
           </a>
         </p>
         <p className="mt-2">
@@ -71,7 +66,6 @@ const Footer = () => {
   );
 };
 
-/** Styles **/
 const footerStyles = `
   .footer-link {
     @apply text-gray-400 hover:text-white transition-all duration-300;

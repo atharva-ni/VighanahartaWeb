@@ -12,27 +12,32 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.0.8",
     "emailjs-com": "^3.2.0",
+    "firebase": "^11.6.0",
     "framer-motion": "^12.4.7",
+    "html-to-image": "^1.11.13",
+    "html2pdf.js": "^0.10.3",
     "lucide-react": "^0.475.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-image-gallery": "^1.4.0",
     "react-router-dom": "^7.2.0",
     "react-slick": "^0.30.3",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^1.3.2",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9.19.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.0.8",
+    "tailwindcss": "^4.1.4",
     "vite": "^6.1.0"
   }
 }

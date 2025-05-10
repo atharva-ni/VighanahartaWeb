@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Building2, Wrench, Users } from 'lucide-react';
+import { Building2, Wrench, Users } from "lucide-react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "./admin/firebase"; // adjust path if needed
 
 function App() {
   const [portfolioData, setPortfolioData] = useState({ projects: [] });
@@ -8,53 +10,93 @@ function App() {
   const [slides, setSlides] = useState([]);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [currentFeedback, setCurrentFeedback] = useState(0);
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
-  // Fetch portfolio data
   useEffect(() => {
-    fetch('src/components/data/portfolio.json')
-      .then((response) => response.json())
-      .then((data) => setPortfolioData(data))
-      .catch((error) => console.error('Error fetching portfolio data:', error));
+    const fetchProjects = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "portfolio"));
+        const projects = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setPortfolioData({ projects });
+      } catch (error) {
+        console.error("Error fetching projects from Firestore:", error);
+      }
+    };
+
+    fetchProjects();
   }, []);
 
-  // Fetch feedback data
   useEffect(() => {
-    fetch('src/components/data/feedback.json')
-      .then((response) => response.json())
-      .then((data) => setFeedbackData(data))
-      .catch((error) => console.error('Error fetching feedback data:', error));
+    const fetchTestimonials = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "testimonials"));
+        const testimonials = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setFeedbackData({ testimonials });
+      } catch (error) {
+        console.error("Error fetching testimonials from Firestore:", error);
+      }
+    };
+
+    fetchTestimonials();
   }, []);
 
-  // Fetch slides data
   useEffect(() => {
-    fetch('src/components/data/slides.json')
+    fetch("src/components/data/slides.json")
       .then((response) => response.json())
       .then((data) => setSlides(data.slides))
-      .catch((error) => console.error('Error fetching slides:', error));
+      .catch((error) => console.error("Error fetching slides:", error));
   }, []);
 
-  // Automatically change the testimonial every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentFeedback((prevIndex) => (prevIndex + 1) % feedbackData.testimonials.length);
-    }, 5000); // Change testimonial every 5 seconds
-
-    return () => clearInterval(interval); // Cleanup on unmount
+      setCurrentFeedback(
+        (prevIndex) => (prevIndex + 1) % feedbackData.testimonials.length
+      );
+    }, 7000);
+    return () => clearInterval(interval);
   }, [feedbackData.testimonials.length]);
 
-  // Automatically change the slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 5000); // Change slide every 5 seconds
-
-    return () => clearInterval(interval); // Cleanup on unmount
+    }, 7000);
+    return () => clearInterval(interval);
   }, [slides.length]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentProjectIndex(
+        (prevIndex) => (prevIndex + 1) % Math.ceil(portfolioData.projects.length / 3)
+      );
+    }, 7000);
+    return () => clearInterval(interval);
+  }, [portfolioData.projects.length]);
+
+  const getProjectsToShow = () => {
+    const startIndex = currentProjectIndex * 3;
+    return portfolioData.projects.slice(startIndex, startIndex + 3);
+  };
+
+  
+  useEffect(() => {
+    const nextIndex = (currentProjectIndex + 1) % Math.ceil(portfolioData.projects.length / 3);
+    const nextProjects = portfolioData.projects.slice(nextIndex * 3, nextIndex * 3 + 3);
+    nextProjects.forEach((project) => {
+      const img = new Image();
+      img.src = project.image;
+    });
+  }, [currentProjectIndex, portfolioData.projects]);
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <motion.section className="container mx-auto px-6 py-24">
+     
+      <motion.section className="container mx-auto px-6 py-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0 }}
@@ -62,19 +104,21 @@ function App() {
             transition={{ duration: 1 }}
           >
             <h1 className="text-blue-600 text-6xl font-bold leading-tight mb-6">
-              Reimagining<br />
-              Engineering<br />
-              Hardware
+              Crafting Excellence
+              <br />
+              & Engineering Trust
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-lg">
-              Vighanaharta Engineers gives you the tools to effortlessly create precision hardware solutions—plus end-to-end manufacturing capabilities to scale your production.
+            <p className="text-lg text-gray-600 mb-6 max-w-2xl">
+              Vighanaharta Engineers, established in 2017, delivers precision hardware and fabrication solutions with end-to-end manufacturing capabilities. With 22+ years of hands-on expertise, a 5000 sq.ft. shaded shop, and trusted clients.
             </p>
-            <button className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-gray-800 transition-colors text-lg">
+            <a
+              href="Services"
+              className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-gray-800 transition-colors text-lg"
+            >
               Explore
-            </button>
+            </a>
           </motion.div>
 
-          {/* Slideshow Section */}
           <motion.div
             className="relative"
             initial={{ opacity: 0 }}
@@ -82,12 +126,12 @@ function App() {
             transition={{ duration: 1 }}
           >
             <div className="bg-gray-100 rounded-2xl p-6">
-              {/* Displaying current slide */}
               {slides.length > 0 && (
                 <img
                   src={slides[currentSlideIndex].image}
                   alt={slides[currentSlideIndex].title}
-                  className="rounded-xl w-full"
+                  className="rounded-xl w-full h-[450px] object-cover"
+                  loading="lazy"
                 />
               )}
             </div>
@@ -95,7 +139,7 @@ function App() {
         </div>
       </motion.section>
 
-      {/* Services Section */}
+    
       <motion.section
         id="services"
         className="py-20 bg-gray-50"
@@ -106,19 +150,23 @@ function App() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-16">Our Services</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {[{
-              title: 'Custom Hardware Design',
-              description: 'Tailored engineering solutions for your specific needs',
-              icon: <Wrench className="h-12 w-12 text-blue-600" />
-            }, {
-              title: 'Precision Manufacturing',
-              description: 'High-quality production with strict quality control',
-              icon: <Building2 className="h-12 w-12 text-blue-600" />
-            }, {
-              title: 'Technical Consultation',
-              description: 'Expert advice and engineering support',
-              icon: <Users className="h-12 w-12 text-blue-600" />
-            }].map((service, index) => (
+            {[
+              {
+                title: "Custom Hardware Design",
+                description: "Tailored engineering solutions for your specific needs",
+                icon: <Wrench className="h-12 w-12 text-blue-600" />,
+              },
+              {
+                title: "Precision Manufacturing",
+                description: "High-quality production with strict quality control",
+                icon: <Building2 className="h-12 w-12 text-blue-600" />,
+              },
+              {
+                title: "Technical Consultation",
+                description: "Expert advice and engineering support",
+                icon: <Users className="h-12 w-12 text-blue-600" />,
+              },
+            ].map((service, index) => (
               <motion.div
                 key={index}
                 className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
@@ -135,7 +183,7 @@ function App() {
         </div>
       </motion.section>
 
-      {/* Projects Showcase */}
+      
       <motion.section
         id="projects"
         className="py-20"
@@ -146,7 +194,7 @@ function App() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-16">Featured Projects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioData.projects.map((project) => (
+            {getProjectsToShow().map((project) => (
               <motion.div
                 key={project.id}
                 className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
@@ -154,10 +202,17 @@ function App() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
               >
-                <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
+                <div className="relative">
+                  <img
+                    loading="lazy"
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-65 object-cover opacity-0 transition-opacity duration-700"
+                    onLoad={(e) => e.currentTarget.classList.add("opacity-100")}
+                  />
+                </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-600">{project.category}</p>
                 </div>
               </motion.div>
             ))}
@@ -165,7 +220,7 @@ function App() {
         </div>
       </motion.section>
 
-      {/* Achievements Section */}
+     
       <motion.section
         id="achievements"
         className="py-20 bg-blue-600 text-white"
@@ -176,18 +231,14 @@ function App() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-16">Our Achievements</h2>
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            {[{
-              number: '500+', label: 'Projects Completed'
-            }, {
-              number: '50+', label: 'Industry Partners'
-            }, {
-              number: '15+', label: 'Years Experience'
-            }, {
-              number: '100%', label: 'Client Satisfaction'
-            }].map((achievement, index) => (
+            {[
+              { number: "500+", label: "Projects Completed" },
+              { number: "50+", label: "Industry Partners" },
+              { number: "15+", label: "Years Experience" },
+              { number: "100%", label: "Client Satisfaction" },
+            ].map((achievement, index) => (
               <motion.div
                 key={index}
-                className="animate-fade-up"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.2, duration: 1 }}
@@ -200,10 +251,10 @@ function App() {
         </div>
       </motion.section>
 
-      {/* Client Feedback Section */}
+      
       <motion.section
         id="client-feedback"
-          className="bg-blue-50 p-16 rounded-[5px] shadow-inner relative overflow-hidden"
+        className="bg-blue-50 p-16 rounded-[5px] shadow-inner relative overflow-hidden"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
