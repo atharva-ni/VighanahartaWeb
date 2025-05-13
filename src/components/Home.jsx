@@ -1,115 +1,108 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Building2, Wrench, Users } from "lucide-react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase.js"; // adjust path if needed
+import { db } from "../firebase.js";
+
+const slides = [
+  {
+    id: 1,
+    image: "/services/s1.jpg",
+    title: "Advanced Manufacturing Solutions",
+  },
+  {
+    id: 2,
+    image: "/services/s2.jpg",
+    title: "Precision Engineering",
+  },
+  {
+    id: 3,
+    image: "/services/s3.jpg",
+    title: "Quality Assurance",
+  },
+];
 
 function App() {
   const [portfolioData, setPortfolioData] = useState({ projects: [] });
   const [feedbackData, setFeedbackData] = useState({ testimonials: [] });
-  const [slides, setSlides] = useState([]);
+
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [currentFeedback, setCurrentFeedback] = useState(0);
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
+  // Fetch data in parallel
   useEffect(() => {
-    const fetchProjects = async () => {
+    const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "portfolio"));
-        const projects = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setPortfolioData({ projects });
+        const [portfolioSnap, testimonialsSnap] = await Promise.all([
+          getDocs(collection(db, "portfolio")),
+          getDocs(collection(db, "testimonials")),
+        ]);
+
+        setPortfolioData({
+          projects: portfolioSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+        });
+
+        setFeedbackData({
+          testimonials: testimonialsSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+        });
       } catch (error) {
-        console.error("Error fetching projects from Firestore:", error);
+        console.error("Error fetching Firestore data:", error);
       }
     };
 
-    fetchProjects();
+    fetchData();
   }, []);
 
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "testimonials"));
-        const testimonials = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setFeedbackData({ testimonials });
-      } catch (error) {
-        console.error("Error fetching testimonials from Firestore:", error);
-      }
-    };
-
-    fetchTestimonials();
-  }, []);
-
-  useEffect(() => {
-    fetch("src/components/data/slides.json")
-      .then((response) => response.json())
-      .then((data) => setSlides(data.slides))
-      .catch((error) => console.error("Error fetching slides:", error));
-  }, []);
-
+  // Single interval for slides, feedback, projects
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentFeedback(
-        (prevIndex) => (prevIndex + 1) % feedbackData.testimonials.length
+      setCurrentSlideIndex((prev) => (prev + 1) % slides.length);
+      setCurrentFeedback((prev) =>
+        feedbackData.testimonials.length ? (prev + 1) % feedbackData.testimonials.length : 0
+      );
+      setCurrentProjectIndex((prev) =>
+        portfolioData.projects.length
+          ? (prev + 1) % Math.ceil(portfolioData.projects.length / 3)
+          : 0
       );
     }, 7000);
-    return () => clearInterval(interval);
-  }, [feedbackData.testimonials.length]);
 
+    return () => clearInterval(interval);
+  }, [slides.length, feedbackData.testimonials.length, portfolioData.projects.length]);
+
+  // Preload all project images once
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 7000);
-    return () => clearInterval(interval);
-  }, [slides.length]);
+    const batchSize = 3;
+    const totalBatches = Math.ceil(portfolioData.projects.length / batchSize);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentProjectIndex(
-        (prevIndex) => (prevIndex + 1) % Math.ceil(portfolioData.projects.length / 3)
-      );
-    }, 7000);
-    return () => clearInterval(interval);
-  }, [portfolioData.projects.length]);
+    for (let i = 0; i < totalBatches; i++) {
+      const batch = portfolioData.projects.slice(i * batchSize, i * batchSize + batchSize);
+      batch.forEach((project) => {
+        const img = new Image();
+        img.src = project.image;
+      });
+    }
+  }, [portfolioData.projects]);
 
-  const getProjectsToShow = () => {
+  const projectsToShow = useMemo(() => {
     const startIndex = currentProjectIndex * 3;
     return portfolioData.projects.slice(startIndex, startIndex + 3);
-  };
-
-  
-  useEffect(() => {
-    const nextIndex = (currentProjectIndex + 1) % Math.ceil(portfolioData.projects.length / 3);
-    const nextProjects = portfolioData.projects.slice(nextIndex * 3, nextIndex * 3 + 3);
-    nextProjects.forEach((project) => {
-      const img = new Image();
-      img.src = project.image;
-    });
   }, [currentProjectIndex, portfolioData.projects]);
 
   return (
     <div className="min-h-screen bg-white">
-     
       <motion.section className="container mx-auto px-6 py-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
             <h1 className="text-blue-600 text-6xl font-bold leading-tight mb-6">
               Crafting Excellence
               <br />
               & Engineering Trust
             </h1>
             <p className="text-lg text-gray-600 mb-6 max-w-2xl">
-              Vighanaharta Engineers, established in 2017, delivers precision hardware and fabrication solutions with end-to-end manufacturing capabilities. With 22+ years of hands-on expertise, a 5000 sq.ft. shaded shop, and trusted clients.
+              Vighanaharta Engineers, established in 2017, delivers precision hardware and fabrication solutions with end-to-end manufacturing capabilities.
+              With 22+ years of hands-on expertise, a 5000 sq.ft. shaded shop, and trusted clients.
             </p>
             <a
               href="Services"
@@ -119,34 +112,20 @@ function App() {
             </a>
           </motion.div>
 
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
+          <motion.div className="relative" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
             <div className="bg-gray-100 rounded-2xl p-6">
-              {slides.length > 0 && (
-                <img
-                  src={slides[currentSlideIndex].image}
-                  alt={slides[currentSlideIndex].title}
-                  className="rounded-xl w-full h-[450px] object-cover"
-                  loading="lazy"
-                />
-              )}
+              <img
+                src={slides[currentSlideIndex].image}
+                alt={slides[currentSlideIndex].title}
+                className="rounded-xl w-full h-[450px] object-cover"
+                loading="lazy"
+              />
             </div>
           </motion.div>
         </div>
       </motion.section>
 
-    
-      <motion.section
-        id="services"
-        className="py-20 bg-gray-50"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
+      <motion.section id="services" className="py-20 bg-gray-50" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-16">Our Services</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -183,26 +162,21 @@ function App() {
         </div>
       </motion.section>
 
-      
-      <motion.section
-        id="projects"
-        className="py-20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
+      <motion.section id="projects" className="py-20" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-16">Featured Projects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {getProjectsToShow().map((project) => (
-              <motion.div
-                key={project.id}
-                className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-              >
-                <div className="relative">
+            {projectsToShow.length === 0 ? (
+              <p>Loading projects...</p>
+            ) : (
+              projectsToShow.map((project) => (
+                <motion.div
+                  key={project.id}
+                  className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1 }}
+                >
                   <img
                     loading="lazy"
                     src={project.image}
@@ -210,24 +184,17 @@ function App() {
                     className="w-full h-65 object-cover opacity-0 transition-opacity duration-700"
                     onLoad={(e) => e.currentTarget.classList.add("opacity-100")}
                   />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                  </div>
+                </motion.div>
+              ))
+            )}
           </div>
         </div>
       </motion.section>
 
-     
-      <motion.section
-        id="achievements"
-        className="py-20 bg-blue-600 text-white"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
+      <motion.section id="achievements" className="py-20 bg-blue-600 text-white" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-16">Our Achievements</h2>
           <div className="grid md:grid-cols-4 gap-8 text-center">
@@ -251,7 +218,6 @@ function App() {
         </div>
       </motion.section>
 
-      
       <motion.section
         id="client-feedback"
         className="bg-blue-50 p-16 rounded-[5px] shadow-inner relative overflow-hidden"
@@ -263,21 +229,25 @@ function App() {
           What Our Clients Say
         </h2>
         <div className="max-w-3xl mx-auto relative h-32 flex items-center justify-center">
-          {feedbackData.testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.id}
-              className={`absolute w-full text-center transition-opacity duration-500 ${
-                index === currentFeedback ? "opacity-100 relative" : "opacity-0 absolute"
-              }`}
-            >
-              <blockquote className="text-2xl italic text-gray-700">
-                "{testimonial.quote}"
-              </blockquote>
-              <p className="text-right mt-4 font-semibold text-gray-600">
-                - {testimonial.author}, {testimonial.position} of {testimonial.company}
-              </p>
-            </motion.div>
-          ))}
+          {feedbackData.testimonials.length === 0 ? (
+            <p>Loading testimonials...</p>
+          ) : (
+            feedbackData.testimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.id}
+                className={`absolute w-full text-center transition-opacity duration-500 ${
+                  index === currentFeedback ? "opacity-100 relative" : "opacity-0 absolute"
+                }`}
+              >
+                <blockquote className="text-2xl italic text-gray-700">
+                  "{testimonial.quote}"
+                </blockquote>
+                <p className="text-right mt-4 font-semibold text-gray-600">
+                  - {testimonial.author}, {testimonial.position} of {testimonial.company}
+                </p>
+              </motion.div>
+            ))
+          )}
         </div>
       </motion.section>
     </div>
