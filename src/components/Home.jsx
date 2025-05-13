@@ -96,10 +96,9 @@ function App() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
             <h1 className="text-blue-600 text-6xl font-bold leading-tight mb-6">
-              Crafting Excellence
-              <br />
-              & Engineering Trust
-            </h1>
+  Building Excellence, <br />
+  Engineering Trust
+</h1>
             <p className="text-lg text-gray-600 mb-6 max-w-2xl">
               Vighanaharta Engineers, established in 2017, delivers precision hardware and fabrication solutions with end-to-end manufacturing capabilities.
               With 22+ years of hands-on expertise, a 5000 sq.ft. shaded shop, and trusted clients.
