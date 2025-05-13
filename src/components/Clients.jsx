@@ -1,8 +1,7 @@
-import React from 'react';
-import { useEffect, useState, useRef, useMemo } from "react"
+import React, { useEffect, useState, useRef, useMemo } from "react"
 import { motion } from "framer-motion"
 import { collection, getDocs } from "firebase/firestore"
-import { db } from "../firebase.js" // adjust path if needed
+import { db } from "../firebase.js"
 
 const Clients = () => {
   const [data, setData] = useState({
@@ -36,9 +35,13 @@ const Clients = () => {
   }, [])
 
   useEffect(() => {
+    const testimonialCount = Math.ceil(data.testimonials.length / 4)
+    if (testimonialCount <= 1) return
+
     const interval = setInterval(() => {
-      setCurrentSet((prev) => (prev + 1) % Math.ceil(data.testimonials.length / 4))
+      setCurrentSet((prev) => (prev + 1) % testimonialCount)
     }, 10000)
+
     return () => clearInterval(interval)
   }, [data.testimonials.length])
 
@@ -61,18 +64,33 @@ const Clients = () => {
 
   const visibleTestimonials = useMemo(
     () => data.testimonials.slice(currentSet * 4, currentSet * 4 + 4),
-    [data.testimonials, currentSet],
+    [data.testimonials, currentSet]
   )
+
+  const portfolioPaginationDots = useMemo(() => {
+    const count = Math.ceil(data.portfolio.length / 3)
+    return Array.from({ length: count })
+  }, [data.portfolio.length])
+
+  const testimonialPaginationDots = useMemo(() => {
+    const count = Math.ceil(data.testimonials.length / 4)
+    return Array.from({ length: count })
+  }, [data.testimonials.length])
 
   return (
     <div className="container mx-auto px-4 md:px-8 py-16 bg-gradient-to-b from-white to-gray-50">
-      {/* Portfolio Section */}
+      {/* Animation fixes: consistent initial and animate */}
       <motion.section
         id="work-portfolio"
         className="text-center mb-24"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
         transition={{ duration: 0.6 }}
+        variants={{
+          hidden: { opacity: 0, y: 20 },
+          visible: { opacity: 1, y: 0 },
+        }}
       >
         <h2 className="text-4xl font-bold mb-10 text-gray-900 inline-flex items-center">
           <span className="w-2 h-10 bg-blue-500 mr-3 rounded-sm"></span>
@@ -92,7 +110,7 @@ const Clients = () => {
               right: 0,
             }}
             animate={{ x }}
-            transition={{ ease: "easeOut", duration: 0.5 }}
+            transition={{ ease: "easeInOut", duration: 0.5 }}
           >
             {data.portfolio.map((project) => (
               <motion.div
@@ -114,18 +132,22 @@ const Clients = () => {
             ))}
           </motion.div>
           <div className="flex justify-center mt-8 gap-2">
-            {Array.from({ length: Math.ceil(data.portfolio.length / 3) }).map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  Math.abs(x / 350) === index ? "bg-blue-500 w-6" : "bg-gray-300"
-                }`}
-                onClick={() => setX(-index * 350)}
-              />
-            ))}
+            {portfolioPaginationDots.map((_, index) => {
+              const active = Math.round(Math.abs(x / 350)) === index
+              return (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    active ? "bg-blue-500 w-6" : "bg-gray-300"
+                  }`}
+                  onClick={() => setX(-index * 350)}
+                />
+              )
+            })}
           </div>
         </motion.div>
       </motion.section>
+
 
       {/* Clients Section */}
       <motion.section
