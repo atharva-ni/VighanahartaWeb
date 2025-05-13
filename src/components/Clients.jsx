@@ -248,80 +248,80 @@ const Clients = () => {
         ))}
       </motion.section>
 
-      {/* Testimonials Section */}
-      <motion.section
-        id="feedback"
-        className="bg-gradient-to-br from-blue-50 to-teal-50 p-10 rounded-3xl mb-16"
+<motion.section
+  id="feedback"
+  className="bg-gradient-to-br from-blue-50 to-teal-50 p-6 sm:p-10 rounded-3xl mb-16"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.6 }}
+>
+  <div className="text-center mb-12">
+    <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900 inline-flex items-center justify-center">
+      <span className="w-2 h-10 bg-blue-500 mr-3 rounded-sm"></span>
+      Client Feedback
+    </h2>
+    <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+      Don't just take our word for it. Here's what our clients have to say about working with us.
+    </p>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {visibleTestimonials.map((testimonial, index) => (
+      <motion.blockquote
+        key={testimonial.id}
+        className="bg-white p-6 sm:p-8 rounded-2xl shadow-md min-h-[220px] flex flex-col justify-between relative"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
+        transition={{ delay: index * 0.1 }}
+        whileHover={{ scale: 1.03, boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)" }}
       >
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-6 text-gray-900 inline-flex items-center justify-center">
-            <span className="w-2 h-10 bg-blue-500 mr-3 rounded-sm"></span>
-            Client Feedback
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about working with us.
-          </p>
-        </div>
+        <svg
+          className="absolute top-6 left-6 w-10 h-10 text-blue-100"
+          fill="currentColor"
+          viewBox="0 0 32 32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2V8zm12 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2V8z" />
+        </svg>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {visibleTestimonials.map((testimonial, index) => (
-            <motion.blockquote
-              key={testimonial.id}
-              className="bg-white p-8 rounded-2xl shadow-md min-h-[220px] flex flex-col justify-between relative"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.03, boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)" }}
-            >
-              <svg
-                className="absolute top-6 left-6 w-10 h-10 text-blue-100"
-                fill="currentColor"
-                viewBox="0 0 32 32"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2V8zm12 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2V8z" />
-              </svg>
+        <p className="text-base sm:text-lg italic mb-6 text-gray-700 pt-8 pl-6">{testimonial.quote}</p>
 
-              <p className="text-lg italic mb-6 text-gray-700 pt-8 pl-6">{testimonial.quote}</p>
-
-              <footer className="mt-auto flex items-center">
-                {testimonial.avatar ? (
-                  <img
-                    src={testimonial.avatar || "/placeholder.svg"}
-                    alt={testimonial.author}
-                    className="w-12 h-12 rounded-full mr-4 object-cover border-2 border-blue-200"
-                  />
-                ) : (
-                  <div className="w-12 h-12 rounded-full mr-4 bg-blue-100 flex items-center justify-center text-blue-500 font-bold text-lg border-2 border-blue-200">
-                    {testimonial.author?.charAt(0) || "C"}
-                  </div>
-                )}
-                <div>
-                  <p className="font-semibold text-gray-800">{testimonial.author}</p>
-                  <p className="text-sm text-blue-600">
-                    {testimonial.position}, {testimonial.company}
-                  </p>
-                </div>
-              </footer>
-            </motion.blockquote>
-          ))}
-        </div>
-
-        <div className="flex justify-center mt-10 gap-2">
-          {Array.from({ length: Math.ceil(data.testimonials.length / 4) }).map((_, index) => (
-            <button
-              key={index}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentSet === index ? "bg-blue-500 w-6" : "bg-gray-300"
-              }`}
-              onClick={() => setCurrentSet(index)}
+        <footer className="mt-auto flex items-center">
+          {testimonial.avatar ? (
+            <img
+              src={testimonial.avatar || "/placeholder.svg"}
+              alt={testimonial.author}
+              className="w-12 h-12 rounded-full mr-4 object-cover border-2 border-blue-200"
             />
-          ))}
-        </div>
-      </motion.section>
+          ) : (
+            <div className="w-12 h-12 rounded-full mr-4 bg-blue-100 flex items-center justify-center text-blue-500 font-bold text-lg border-2 border-blue-200">
+              {testimonial.author?.charAt(0) || "C"}
+            </div>
+          )}
+          <div>
+            <p className="font-semibold text-gray-800">{testimonial.author}</p>
+            <p className="text-sm text-blue-600">
+              {testimonial.position}, {testimonial.company}
+            </p>
+          </div>
+        </footer>
+      </motion.blockquote>
+    ))}
+  </div>
+
+  <div className="flex justify-center mt-10 gap-2">
+    {Array.from({ length: Math.ceil(data.testimonials.length / 4) }).map((_, index) => (
+      <button
+        key={index}
+        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+          currentSet === index ? "bg-blue-500 w-6" : "bg-gray-300"
+        }`}
+        onClick={() => setCurrentSet(index)}
+      />
+    ))}
+  </div>
+</motion.section>
+
 
       {/* Call to Action */}
       <motion.section

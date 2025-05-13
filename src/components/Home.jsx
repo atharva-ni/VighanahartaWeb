@@ -92,37 +92,49 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      <motion.section className="container mx-auto px-6 py-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-            <h1 className="text-blue-600 text-6xl font-bold leading-tight mb-6">
-  Building Excellence, <br />
-  Engineering Trust
-</h1>
-            <p className="text-lg text-gray-600 mb-6 max-w-2xl">
-              Vighanaharta Engineers, established in 2017, delivers precision hardware and fabrication solutions with end-to-end manufacturing capabilities.
-              With 22+ years of hands-on expertise, a 5000 sq.ft. shaded shop, and trusted clients.
-            </p>
-            <a
-              href="Services"
-              className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-gray-800 transition-colors text-lg"
-            >
-              Explore
-            </a>
-          </motion.div>
+    <motion.section className="container mx-auto px-4 sm:px-6 py-10">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+    {/* Left Content */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <h1 className="text-blue-600 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
+        Building Excellence, <br className="hidden sm:block" />
+        Engineering Trust
+      </h1>
+      <p className="text-base sm:text-lg text-gray-600 mb-6 max-w-xl">
+        Vighanaharta Engineers, established in 2017, delivers precision hardware and fabrication solutions with end-to-end manufacturing capabilities.
+        With 22+ years of hands-on expertise, a 5000 sq.ft. shaded shop, and trusted clients.
+      </p>
+      <a
+        href="Services"
+        className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-gray-800 transition-colors text-base sm:text-lg"
+      >
+        Explore
+      </a>
+    </motion.div>
 
-          <motion.div className="relative" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-            <div className="bg-gray-100 rounded-2xl p-6">
-              <img
-                src={slides[currentSlideIndex].image}
-                alt={slides[currentSlideIndex].title}
-                className="rounded-xl w-full h-[450px] object-cover"
-                loading="lazy"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
+    {/* Right Image */}
+    <motion.div
+      className="relative"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <div className="bg-gray-100 rounded-2xl p-4 sm:p-6">
+        <img
+          src={slides[currentSlideIndex].image}
+          alt={slides[currentSlideIndex].title}
+          className="rounded-xl w-full h-60 sm:h-80 md:h-[450px] object-cover"
+          loading="lazy"
+        />
+      </div>
+    </motion.div>
+  </div>
+</motion.section>
+
 
       <motion.section id="services" className="py-20 bg-gray-50" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
         <div className="container mx-auto px-6">
@@ -218,37 +230,38 @@ function App() {
       </motion.section>
 
       <motion.section
-        id="client-feedback"
-        className="bg-blue-50 p-16 rounded-[5px] shadow-inner relative overflow-hidden"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
-          What Our Clients Say
-        </h2>
-        <div className="max-w-3xl mx-auto relative h-32 flex items-center justify-center">
-          {feedbackData.testimonials.length === 0 ? (
-            <p>Loading testimonials...</p>
-          ) : (
-            feedbackData.testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.id}
-                className={`absolute w-full text-center transition-opacity duration-500 ${
-                  index === currentFeedback ? "opacity-100 relative" : "opacity-0 absolute"
-                }`}
-              >
-                <blockquote className="text-2xl italic text-gray-700">
-                  "{testimonial.quote}"
-                </blockquote>
-                <p className="text-right mt-4 font-semibold text-gray-600">
-                  - {testimonial.author}, {testimonial.position} of {testimonial.company}
-                </p>
-              </motion.div>
-            ))
-          )}
-        </div>
-      </motion.section>
+  id="client-feedback"
+  className="bg-blue-50 p-6 sm:p-10 md:p-16 rounded-[5px] shadow-inner relative overflow-hidden"
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+>
+  <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center text-gray-800">
+    What Our Clients Say
+  </h2>
+  <div className="max-w-3xl mx-auto relative min-h-[160px] sm:min-h-[128px] flex items-center justify-center px-2 text-center">
+    {feedbackData.testimonials.length === 0 ? (
+      <p>Loading testimonials...</p>
+    ) : (
+      feedbackData.testimonials.map((testimonial, index) => (
+        <motion.div
+          key={testimonial.id}
+          className={`absolute w-full transition-opacity duration-500 px-4 sm:px-8 ${
+            index === currentFeedback ? "opacity-100 relative" : "opacity-0 absolute"
+          }`}
+        >
+          <blockquote className="text-lg sm:text-2xl italic text-gray-700 leading-relaxed">
+            "{testimonial.quote}"
+          </blockquote>
+          <p className="text-sm sm:text-base text-right mt-3 font-semibold text-gray-600">
+            - {testimonial.author}, {testimonial.position} of {testimonial.company}
+          </p>
+        </motion.div>
+      ))
+    )}
+  </div>
+</motion.section>
+
     </div>
   );
 }
