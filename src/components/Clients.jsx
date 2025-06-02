@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef, useMemo } from "react"
+import React from 'react';
+import { useEffect, useState, useRef, useMemo } from "react"
 import { motion } from "framer-motion"
 import { collection, getDocs } from "firebase/firestore"
 import { db } from "../firebase.js"
@@ -62,9 +63,18 @@ const Clients = () => {
     return () => clearInterval(interval)
   }, [data.portfolio])
 
+  useEffect(() => {
+    return () => {
+      // Cleanup any potential memory leaks
+      if (sliderRef.current) {
+        sliderRef.current = null
+      }
+    }
+  }, [])
+
   const visibleTestimonials = useMemo(
-    () => data.testimonials.slice(currentSet * 4, currentSet * 4 + 4),
-    [data.testimonials, currentSet]
+    () => data.testimonials.slice(currentSet * 4, currentSet * 4 + 4).filter(Boolean),
+    [data.testimonials, currentSet],
   )
 
   const portfolioPaginationDots = useMemo(() => {
@@ -76,6 +86,10 @@ const Clients = () => {
     const count = Math.ceil(data.testimonials.length / 4)
     return Array.from({ length: count })
   }, [data.testimonials.length])
+
+  const portfolioSlideWidth = useMemo(() => {
+    return window.innerWidth < 640 ? 300 : 350
+  }, [])
 
   return (
     <div className="container mx-auto px-4 md:px-8 py-16 bg-gradient-to-b from-white to-gray-50">
@@ -106,16 +120,24 @@ const Clients = () => {
             className="flex gap-6 py-4"
             drag="x"
             dragConstraints={{
-              left: data.portfolio.length > 3 ? -((data.portfolio.length - 3) * 350) : 0,
+              left:
+                data.portfolio.length > 3
+                  ? -(
+                      data.portfolio.length * (window.innerWidth < 640 ? 300 : 350) -
+                      (window.innerWidth < 768 ? window.innerWidth - 40 : 1050)
+                    )
+                  : 0,
               right: 0,
             }}
             animate={{ x }}
             transition={{ ease: "easeInOut", duration: 0.5 }}
+            dragElastic={0.1}
+            dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
           >
             {data.portfolio.map((project) => (
               <motion.div
                 key={project.id}
-                className="min-w-[300px] relative overflow-hidden rounded-xl shadow-lg group"
+                className="min-w-[300px] sm:min-w-[320px] md:min-w-[350px] relative overflow-hidden rounded-xl shadow-lg group"
                 whileHover={{ scale: 1.03, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
@@ -123,6 +145,10 @@ const Clients = () => {
                   src={project.image || "/placeholder.png"}
                   alt={project.title}
                   className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
+                  onError={(e) => {
+                    e.target.onerror = null
+                    e.target.src = "/placeholder.png"
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
@@ -148,7 +174,6 @@ const Clients = () => {
         </motion.div>
       </motion.section>
 
-
       {/* Clients Section */}
       <motion.section
         id="client-list"
@@ -164,7 +189,7 @@ const Clients = () => {
         <p className="text-gray-600 max-w-2xl mb-12">
           We're proud to work with industry leaders who trust us with their digital transformation needs.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
           {data.clients.map((client) => (
             <motion.div
               key={client.id}
@@ -172,7 +197,12 @@ const Clients = () => {
               whileHover={{ y: -8, scale: 1.02 }}
             >
               <div className="h-16 flex items-center justify-center mb-6">
-                <img src={client.logo || "/placeholder.svg"} alt={client.name} className="max-h-full object-contain" />
+                <img
+                  src={client.logo || "/placeholder.svg"}
+                  alt={client.name}
+                  className="max-h-full object-contain"
+                  loading="lazy"
+                />
               </div>
               <h3 className="text-lg font-semibold text-center text-gray-800 mb-1">{client.name}</h3>
               <p className="text-sm text-center text-blue-600">{client.industry}</p>
@@ -202,7 +232,7 @@ const Clients = () => {
         {data.caseStudies.map((study, index) => (
           <motion.div
             key={study.id}
-            className="bg-white p-8 md:p-10 rounded-2xl shadow-lg overflow-hidden border-l-4 border-blue-500"
+            className="bg-white p-6 md:p-8 lg:p-10 rounded-2xl shadow-lg overflow-hidden border-l-4 border-blue-500"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -242,86 +272,84 @@ const Clients = () => {
                   ))}
                 </ul>
               </div>
-              
             </div>
           </motion.div>
         ))}
       </motion.section>
 
-<motion.section
-  id="feedback"
-  className="bg-gradient-to-br from-blue-50 to-teal-50 p-6 sm:p-10 rounded-3xl mb-16"
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, delay: 0.6 }}
->
-  <div className="text-center mb-12">
-    <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900 inline-flex items-center justify-center">
-      <span className="w-2 h-10 bg-blue-500 mr-3 rounded-sm"></span>
-      Client Feedback
-    </h2>
-    <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
-      Don't just take our word for it. Here's what our clients have to say about working with us.
-    </p>
-  </div>
-
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-    {visibleTestimonials.map((testimonial, index) => (
-      <motion.blockquote
-        key={testimonial.id}
-        className="bg-white p-6 sm:p-8 rounded-2xl shadow-md min-h-[220px] flex flex-col justify-between relative"
+      <motion.section
+        id="feedback"
+        className="bg-gradient-to-br from-blue-50 to-teal-50 p-6 sm:p-10 rounded-3xl mb-16"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: index * 0.1 }}
-        whileHover={{ scale: 1.03, boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)" }}
+        transition={{ duration: 0.6, delay: 0.6 }}
       >
-        <svg
-          className="absolute top-6 left-6 w-10 h-10 text-blue-100"
-          fill="currentColor"
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2V8zm12 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2V8z" />
-        </svg>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900 inline-flex items-center justify-center">
+            <span className="w-2 h-10 bg-blue-500 mr-3 rounded-sm"></span>
+            Client Feedback
+          </h2>
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+            Don't just take our word for it. Here's what our clients have to say about working with us.
+          </p>
+        </div>
 
-        <p className="text-base sm:text-lg italic mb-6 text-gray-700 pt-8 pl-6">{testimonial.quote}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+          {visibleTestimonials.map((testimonial, index) => (
+            <motion.blockquote
+              key={testimonial.id}
+              className="bg-white p-6 sm:p-8 rounded-2xl shadow-md min-h-[220px] flex flex-col justify-between relative"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ scale: 1.03, boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)" }}
+            >
+              <svg
+                className="absolute top-6 left-6 w-10 h-10 text-blue-100"
+                fill="currentColor"
+                viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2V8zm12 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2V8z" />
+              </svg>
 
-        <footer className="mt-auto flex items-center">
-          {testimonial.avatar ? (
-            <img
-              src={testimonial.avatar || "/placeholder.svg"}
-              alt={testimonial.author}
-              className="w-12 h-12 rounded-full mr-4 object-cover border-2 border-blue-200"
+              <p className="text-base sm:text-lg italic mb-6 text-gray-700 pt-8 pl-6">{testimonial.quote}</p>
+
+              <footer className="mt-auto flex items-center">
+                {testimonial.avatar ? (
+                  <img
+                    src={testimonial.avatar || "/placeholder.svg"}
+                    alt={testimonial.author}
+                    className="w-12 h-12 rounded-full mr-4 object-cover border-2 border-blue-200"
+                  />
+                ) : (
+                  <div className="w-12 h-12 rounded-full mr-4 bg-blue-100 flex items-center justify-center text-blue-500 font-bold text-lg border-2 border-blue-200">
+                    {testimonial.author?.charAt(0) || "C"}
+                  </div>
+                )}
+                <div>
+                  <p className="font-semibold text-gray-800">{testimonial.author}</p>
+                  <p className="text-sm text-blue-600">
+                    {testimonial.position}, {testimonial.company}
+                  </p>
+                </div>
+              </footer>
+            </motion.blockquote>
+          ))}
+        </div>
+
+        <div className="flex justify-center mt-10 gap-2">
+          {Array.from({ length: Math.ceil(data.testimonials.length / 4) }).map((_, index) => (
+            <button
+              key={index}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                currentSet === index ? "bg-blue-500 w-6" : "bg-gray-300"
+              }`}
+              onClick={() => setCurrentSet(index)}
             />
-          ) : (
-            <div className="w-12 h-12 rounded-full mr-4 bg-blue-100 flex items-center justify-center text-blue-500 font-bold text-lg border-2 border-blue-200">
-              {testimonial.author?.charAt(0) || "C"}
-            </div>
-          )}
-          <div>
-            <p className="font-semibold text-gray-800">{testimonial.author}</p>
-            <p className="text-sm text-blue-600">
-              {testimonial.position}, {testimonial.company}
-            </p>
-          </div>
-        </footer>
-      </motion.blockquote>
-    ))}
-  </div>
-
-  <div className="flex justify-center mt-10 gap-2">
-    {Array.from({ length: Math.ceil(data.testimonials.length / 4) }).map((_, index) => (
-      <button
-        key={index}
-        className={`w-3 h-3 rounded-full transition-all duration-300 ${
-          currentSet === index ? "bg-blue-500 w-6" : "bg-gray-300"
-        }`}
-        onClick={() => setCurrentSet(index)}
-      />
-    ))}
-  </div>
-</motion.section>
-
+          ))}
+        </div>
+      </motion.section>
 
       {/* Call to Action */}
       <motion.section
