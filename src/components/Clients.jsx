@@ -87,16 +87,12 @@ const Clients = () => {
     return Array.from({ length: count })
   }, [data.testimonials.length])
 
-  const portfolioSlideWidth = useMemo(() => {
-    return window.innerWidth < 640 ? 300 : 350
-  }, [])
-
   return (
-    <div className="container mx-auto px-4 md:px-8 py-16 bg-gradient-to-b from-white to-gray-50">
+    <div className="container mx-auto px-3 md:px-8 py-16 bg-gradient-to-b from-white to-gray-50">
       {/* Animation fixes: consistent initial and animate */}
       <motion.section
         id="work-portfolio"
-        className="text-center mb-24"
+        className="text-left md:text-center mb-24"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -106,27 +102,21 @@ const Clients = () => {
           visible: { opacity: 1, y: 0 },
         }}
       >
-        <h2 className="text-4xl font-bold mb-10 text-gray-900 inline-flex items-center">
+        <h2 className="text-2xl md:text-4xl font-bold mb-10 text-gray-900 inline-flex items-center">
           <span className="w-2 h-10 bg-blue-500 mr-3 rounded-sm"></span>
           Our Work Portfolio
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-12">
+        <p className="text-gray-600 max-w-2xl md:mx-auto mb-12">
           Explore our latest projects and see how we've helped businesses transform their digital presence.
         </p>
 
         <motion.div className="overflow-hidden rounded-xl" whileHover={{ cursor: "grab" }}>
           <motion.div
             ref={sliderRef}
-            className="flex gap-6 py-4"
+            className="flex gap-6 py-4 touch-pan-y"
             drag="x"
             dragConstraints={{
-              left:
-                data.portfolio.length > 3
-                  ? -(
-                      data.portfolio.length * (window.innerWidth < 640 ? 300 : 350) -
-                      (window.innerWidth < 768 ? window.innerWidth - 40 : 1050)
-                    )
-                  : 0,
+              left: data.portfolio.length > 3 ? -((data.portfolio.length - 3) * 350) : 0,
               right: 0,
             }}
             animate={{ x }}
@@ -166,7 +156,7 @@ const Clients = () => {
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     active ? "bg-blue-500 w-6" : "bg-gray-300"
                   }`}
-                  onClick={() => setX(-index * 350)}
+                  onClick={() => setX(-index * (window.innerWidth < 640 ? 300 : 350))}
                 />
               )
             })}
@@ -177,19 +167,19 @@ const Clients = () => {
       {/* Clients Section */}
       <motion.section
         id="client-list"
-        className="mb-28"
+        className="text-left md:text-center mb-28"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <h2 className="text-4xl font-bold mb-10 text-gray-900 inline-flex items-center">
+        <h2 className="text-2xl md:text-4xl font-bold mb-10 text-gray-900 inline-flex items-center">
           <span className="w-2 h-10 bg-blue-500 mr-3 rounded-sm"></span>
           Our Trusted Clients
         </h2>
-        <p className="text-gray-600 max-w-2xl mb-12">
+        <p className="text-gray-600 max-w-2xl md:mx-auto mb-12">
           We're proud to work with industry leaders who trust us with their digital transformation needs.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-8">
           {data.clients.map((client) => (
             <motion.div
               key={client.id}
@@ -219,12 +209,12 @@ const Clients = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold mb-6 text-gray-900 inline-flex items-center justify-center">
+        <div className="text-left md:text-center mb-8">
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 text-gray-900 inline-flex items-center">
             <span className="w-2 h-10 bg-blue-500 mr-3 rounded-sm"></span>
             Case Studies
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl md:mx-auto">
             Discover how we've helped our clients achieve remarkable results through innovative solutions.
           </p>
         </div>
@@ -232,7 +222,7 @@ const Clients = () => {
         {data.caseStudies.map((study, index) => (
           <motion.div
             key={study.id}
-            className="bg-white p-6 md:p-8 lg:p-10 rounded-2xl shadow-lg overflow-hidden border-l-4 border-blue-500"
+            className="bg-white p-4 md:p-8 lg:p-10 rounded-2xl shadow-lg overflow-hidden border-l-4 border-blue-500"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -279,30 +269,30 @@ const Clients = () => {
 
       <motion.section
         id="feedback"
-        className="bg-gradient-to-br from-blue-50 to-teal-50 p-6 sm:p-10 rounded-3xl mb-16"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        className="bg-gradient-to-br from-blue-50 to-teal-50 p-4 md:p-10 rounded-3xl mb-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.6 }}
       >
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900 inline-flex items-center justify-center">
+        <div className="text-left md:text-center mb-12">
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 text-gray-900 inline-flex items-center">
             <span className="w-2 h-10 bg-blue-500 mr-3 rounded-sm"></span>
             Client Feedback
           </h2>
-          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl md:mx-auto">
             Don't just take our word for it. Here's what our clients have to say about working with us.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 h-auto">
           {visibleTestimonials.map((testimonial, index) => (
             <motion.blockquote
               key={testimonial.id}
-              className="bg-white p-6 sm:p-8 rounded-2xl shadow-md min-h-[220px] flex flex-col justify-between relative"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.03, boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)" }}
+              className="bg-white p-6 sm:p-8 rounded-2xl shadow-md h-[280px] flex flex-col justify-between relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              whileHover={{ boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)" }}
             >
               <svg
                 className="absolute top-6 left-6 w-10 h-10 text-blue-100"
@@ -313,7 +303,9 @@ const Clients = () => {
                 <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2V8zm12 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2V8z" />
               </svg>
 
-              <p className="text-base sm:text-lg italic mb-6 text-gray-700 pt-8 pl-6">{testimonial.quote}</p>
+              <p className="text-base sm:text-lg italic mb-6 text-gray-700 pt-8 pl-6 line-clamp-4 overflow-hidden">
+                {testimonial.quote}
+              </p>
 
               <footer className="mt-auto flex items-center">
                 {testimonial.avatar ? (
@@ -353,22 +345,23 @@ const Clients = () => {
 
       {/* Call to Action */}
       <motion.section
-        className="text-center py-16"
+        className="text-left md:text-center py-16"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
       >
         <h2 className="text-3xl font-bold mb-6">Ready to transform your business?</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-8">
+        <p className="text-gray-600 max-w-2xl md:mx-auto mb-8">
           Let's discuss how we can help you achieve your business goals with our tailored solutions.
         </p>
-        <motion.button
-          className="px-8 py-3 bg-blue-600 text-white font-medium rounded-full shadow-lg hover:bg-blue-700 transition-colors"
+        <motion.a
+          href="/contact"
+          className="inline-block px-8 py-3 bg-blue-600 text-white font-medium rounded-full shadow-lg hover:bg-blue-700 transition-colors mx-auto md:mx-auto"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           Get in Touch
-        </motion.button>
+        </motion.a>
       </motion.section>
     </div>
   )
