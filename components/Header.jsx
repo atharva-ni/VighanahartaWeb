@@ -39,7 +39,7 @@ export default function Header() {
             : "bg-white border-b border-gray-100"
         }`}
       >
-        <nav className="container mx-auto px-3 sm:px-4 flex justify-between items-center h-16">
+        <nav className="max-w-screen-2xl mx-auto px-2 sm:px-4 flex justify-between items-center h-18">
           <Link href="/" className="flex-shrink-0">
             <div className="relative h-55 w-85">
               <Image
