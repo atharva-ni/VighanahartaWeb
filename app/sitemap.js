@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = "https://vighanahartaengineers.in";
+  const baseUrl = "https://www.vighanahartaengineers.in";
 
   return [
     {
@@ -34,4 +34,5 @@ export default function sitemap() {
     },
   ];
 }
+
 

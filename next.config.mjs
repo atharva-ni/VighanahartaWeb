@@ -6,6 +6,21 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'vighanahartaengineers.in',
+          },
+        ],
+        destination: 'https://www.vighanahartaengineers.in/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
