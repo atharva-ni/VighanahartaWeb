@@ -6,7 +6,7 @@ export const metadata = {
     "Vighanaharta Engineers — ISO 9001:2015 certified precision manufacturing, fabrication, and engineering solutions in Pune since 2017. CNC laser cutting, bending, welding, conveyor systems, and material handling equipment.",
   keywords: ["precision manufacturing Pune", "CNC laser cutting", "industrial fabrication", "welding services", "conveyor systems", "ISO 9001 manufacturer Pune"],
   alternates: {
-    canonical: "https://vighanahartaengineers.com",
+    canonical: "https://vighanahartaengineers.in",
   },
 };
 
@@ -20,11 +20,11 @@ export default function Home() {
             {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "@id": "https://vighanahartaengineers.com/#business",
+              "@id": "https://vighanahartaengineers.in/#business",
               name: "Vighanaharta Engineers",
-              url: "https://vighanahartaengineers.com",
-              logo: "https://vighanahartaengineers.com/services/logo.png",
-              image: "https://vighanahartaengineers.com/services/s1.jpg",
+              url: "https://vighanahartaengineers.in",
+              logo: "https://vighanahartaengineers.in/services/logo.png",
+              image: "https://vighanahartaengineers.in/services/s1.jpg",
               description: "ISO 9001:2015 certified precision manufacturing, fabrication, and engineering solutions in Pune since 2017. Specializing in CNC laser cutting, welding, conveyor systems, and industrial equipment.",
               address: {
                 "@type": "PostalAddress",
@@ -77,10 +77,10 @@ export default function Home() {
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Vighanaharta Engineers",
-              url: "https://vighanahartaengineers.com",
+              url: "https://vighanahartaengineers.in",
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://vighanahartaengineers.com/services?q={search_term_string}",
+                target: "https://vighanahartaengineers.in/services?q={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
             },
@@ -91,3 +91,4 @@ export default function Home() {
     </>
   );
 }
+

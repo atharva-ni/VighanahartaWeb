@@ -78,7 +78,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative bg-white overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.04) 1px, transparent 0)', backgroundSize: '40px 40px' }}>
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center min-h-[calc(100vh-5rem)] py-12 md:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center min-h-[calc(100vh-4rem)] py-8 md:py-14">
             {/* Text */}
             <motion.div
               className="lg:col-span-2"
@@ -87,16 +87,16 @@ export default function HomePage() {
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <motion.span
-                className="inline-flex items-center gap-2 bg-primary-50 text-primary-700 font-semibold text-xs tracking-wider uppercase px-4 py-2 rounded-full mb-5 border border-primary-100"
+                className="inline-flex flex-wrap items-center gap-1.5 bg-primary-50 text-primary-700 font-semibold text-[11px] tracking-wide uppercase px-3 py-2 rounded-full mb-4 border border-primary-100 max-w-full"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <Award className="h-3.5 w-3.5" />
+                <Award className="h-3 w-3 flex-shrink-0" />
                 ISO 9001:2015 Certified &bull; 22+ Years of Excellence
               </motion.span>
               <motion.h1
-                className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-gray-900 leading-[1.1] tracking-tight mb-5 font-[family-name:var(--font-manrope)]"
+                className="text-3xl sm:text-4xl lg:text-[52px] font-bold text-gray-900 leading-[1.1] tracking-tight mb-4 sm:mb-5 font-[family-name:var(--font-manrope)]"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -105,7 +105,7 @@ export default function HomePage() {
                 <span className="text-primary-600">Engineering Trust</span>
               </motion.h1>
               <motion.p
-                className="text-lg text-gray-500 mb-8 max-w-lg leading-relaxed"
+                className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 max-w-lg leading-relaxed"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.35 }}
@@ -121,19 +121,19 @@ export default function HomePage() {
               >
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-primary-600 text-white px-7 py-3.5 rounded-lg hover:bg-primary-700 transition-colors text-base font-medium shadow-sm"
+                  className="inline-flex items-center gap-2 bg-primary-600 text-white px-5 py-3 sm:px-7 sm:py-3.5 rounded-lg hover:bg-primary-700 transition-colors text-sm sm:text-base font-medium shadow-sm"
                 >
                   Get a Quote <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/clients"
-                  className="inline-flex items-center gap-2 border border-gray-200 text-gray-700 px-7 py-3.5 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors text-base font-medium"
+                  className="inline-flex items-center gap-2 border border-gray-200 text-gray-700 px-5 py-3 sm:px-7 sm:py-3.5 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors text-sm sm:text-base font-medium"
                 >
                   View Our Work
                 </Link>
               </motion.div>
               {/* Stats row */}
-              <div className="flex gap-8 pt-8 border-t border-gray-100">
+              <div className="flex gap-5 sm:gap-8 pt-6 sm:pt-8 border-t border-gray-100">
                 {[
                   { value: "22+", label: "Years" },
                   { value: "500+", label: "Projects" },
@@ -201,8 +201,8 @@ export default function HomePage() {
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
+      <section className="py-12 md:py-20 bg-white">
+        <div className="container mx-auto px-5 sm:px-6">
           <div className="text-center mb-16">
             <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">
               What We Do
@@ -266,7 +266,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">
@@ -326,7 +326,7 @@ export default function HomePage() {
       <ProcessTimeline />
 
       {/* Achievements */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-12 md:py-20 bg-gray-900">
         <div className="container mx-auto px-4 sm:px-6">
           <h2 className="text-3xl sm:text-4xl font-bold text-center text-white mb-16">
             Our Achievements
@@ -359,7 +359,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">
@@ -425,7 +425,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="relative rounded-xl overflow-hidden p-10 md:p-16 text-center">
             <Image

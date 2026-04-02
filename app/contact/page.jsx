@@ -6,13 +6,13 @@ export const metadata = {
     "Contact Vighanaharta Engineers for precision manufacturing, fabrication, and engineering services in Pune. Located in Chikhali, Pune. Call +91 9850952181 for a free quote.",
   keywords: ["contact Vighanaharta Engineers", "manufacturing company contact Pune", "fabrication services inquiry", "engineering quote Pune"],
   alternates: {
-    canonical: "https://vighanahartaengineers.com/contact",
+    canonical: "https://vighanahartaengineers.in/contact",
   },
   openGraph: {
     title: "Contact Vighanaharta Engineers",
     description:
       "Get in touch for manufacturing and engineering solutions. Located in Pune, Maharashtra.",
-    url: "https://vighanahartaengineers.com/contact",
+    url: "https://vighanahartaengineers.in/contact",
   },
 };
 
@@ -64,8 +64,8 @@ export default function ContactPage() {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://vighanahartaengineers.com" },
-                { "@type": "ListItem", position: 2, name: "Contact Us", item: "https://vighanahartaengineers.com/contact" },
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://vighanahartaengineers.in" },
+                { "@type": "ListItem", position: 2, name: "Contact Us", item: "https://vighanahartaengineers.in/contact" },
               ],
             },
           ]),
@@ -75,3 +75,4 @@ export default function ContactPage() {
     </>
   );
 }
+

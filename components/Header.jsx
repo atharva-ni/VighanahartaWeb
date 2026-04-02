@@ -39,9 +39,9 @@ export default function Header() {
             : "bg-white border-b border-gray-100"
         }`}
       >
-        <nav className="max-w-screen-2xl mx-auto px-2 sm:px-4 flex justify-between items-center h-18">
+        <nav className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
           <Link href="/" className="flex-shrink-0">
-            <div className="relative h-55 w-85">
+            <div className="relative h-12 w-36 sm:h-14 sm:w-44">
               <Image
                 src="/services/logo.png"
                 alt="Vighanaharta Engineers"

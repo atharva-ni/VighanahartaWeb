@@ -6,6 +6,7 @@ export default function robots() {
         allow: "/",
       },
     ],
-    sitemap: "https://vighanahartaengineers.com/sitemap.xml",
+    sitemap: "https://vighanahartaengineers.in/sitemap.xml",
   };
 }
+

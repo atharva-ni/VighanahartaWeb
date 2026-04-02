@@ -6,13 +6,13 @@ export const metadata = {
     "View Vighanaharta Engineers' portfolio of successful manufacturing projects and trusted clients including Mahindra, Thermax, Beumer, Forbes Marshall, and more. Industrial fabrication showcase.",
   keywords: ["Vighanaharta Engineers clients", "manufacturing portfolio Pune", "industrial fabrication projects", "engineering project showcase"],
   alternates: {
-    canonical: "https://vighanahartaengineers.com/clients",
+    canonical: "https://vighanahartaengineers.in/clients",
   },
   openGraph: {
     title: "Clients & Portfolio — Vighanaharta Engineers",
     description:
       "Our portfolio of successful projects and trusted clients across automotive, energy, and manufacturing industries.",
-    url: "https://vighanahartaengineers.com/clients",
+    url: "https://vighanahartaengineers.in/clients",
     images: [{ url: "/services/logo.png" }],
   },
 };
@@ -30,7 +30,7 @@ export default function ClientsPage() {
               name: "Clients & Portfolio",
               description:
                 "View Vighanaharta Engineers portfolio of successful manufacturing projects and trusted clients.",
-              url: "https://vighanahartaengineers.com/clients",
+              url: "https://vighanahartaengineers.in/clients",
               mainEntity: {
                 "@type": "ItemList",
                 name: "Featured Projects",
@@ -41,8 +41,8 @@ export default function ClientsPage() {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://vighanahartaengineers.com" },
-                { "@type": "ListItem", position: 2, name: "Clients & Portfolio", item: "https://vighanahartaengineers.com/clients" },
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://vighanahartaengineers.in" },
+                { "@type": "ListItem", position: 2, name: "Clients & Portfolio", item: "https://vighanahartaengineers.in/clients" },
               ],
             },
           ]),
@@ -52,3 +52,4 @@ export default function ClientsPage() {
     </>
   );
 }
+

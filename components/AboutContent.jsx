@@ -47,7 +47,7 @@ export default function AboutContent() {
   return (
     <div className="min-h-screen bg-white">
       {/* Page Header with background image */}
-      <section className="relative bg-gray-900 py-20 md:py-28 overflow-hidden">
+      <section className="relative bg-gray-900 py-14 md:py-24 overflow-hidden">
         <Image
           src="/services/s1.jpg"
           alt="Factory"
@@ -56,7 +56,7 @@ export default function AboutContent() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-900/70" />
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="container mx-auto px-5 md:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -71,7 +71,7 @@ export default function AboutContent() {
               <Award className="h-3.5 w-3.5" />
               About Us
             </span>
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-3 font-[family-name:var(--font-manrope)]">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-3 font-[family-name:var(--font-manrope)]">
               About Vighanaharta Engineers
             </h1>
             <p className="text-lg text-gray-300 max-w-xl">
@@ -82,8 +82,8 @@ export default function AboutContent() {
       </section>
 
       {/* Stats Row - tight to header */}
-      <section className="py-12 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4">
+      <section className="py-10 md:py-12 bg-white border-b border-gray-100">
+        <div className="container mx-auto px-5 sm:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { number: 2017, label: "Established", icon: <Building2 className="h-5 w-5" />, suffix: "" },
@@ -116,8 +116,8 @@ export default function AboutContent() {
       </section>
 
       {/* Image + Mission/Vision — side by side */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="py-12 md:py-20">
+        <div className="container mx-auto px-5 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             {/* Factory Image */}
             <motion.div
@@ -199,8 +199,8 @@ export default function AboutContent() {
       </section>
 
       {/* Company Story + Timeline */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="py-12 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-5 md:px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div
               className="text-center mb-10"
@@ -265,8 +265,8 @@ export default function AboutContent() {
       </section>
 
       {/* Management */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="py-12 md:py-20">
+        <div className="container mx-auto px-5 md:px-6">
           <div className="text-center mb-12">
             <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">
               Our Leaders
@@ -333,8 +333,8 @@ export default function AboutContent() {
       </section>
 
       {/* Work Domain */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="py-12 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-5 md:px-6">
           <div className="text-center mb-12">
             <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">
               Expertise
@@ -395,7 +395,7 @@ export default function AboutContent() {
       </section>
 
       {/* CTA */}
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="relative rounded-xl overflow-hidden p-10 md:p-16 text-center">
             <Image

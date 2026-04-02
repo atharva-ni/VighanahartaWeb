@@ -6,13 +6,13 @@ export const metadata = {
     "Vighanaharta Engineers offers CNC laser cutting, bending, welding, material handling equipment, conveyor systems, fabrication services, and more. Full-service precision manufacturing in Pune, Maharashtra.",
   keywords: ["CNC laser cutting Pune", "welding services", "material handling equipment", "belt bucket conveyors", "fabrication services Pune", "industrial manufacturing"],
   alternates: {
-    canonical: "https://vighanahartaengineers.com/services",
+    canonical: "https://vighanahartaengineers.in/services",
   },
   openGraph: {
     title: "Manufacturing Services — Vighanaharta Engineers",
     description:
       "CNC laser cutting, precision fabrication, welding, conveyor systems and more. Full-service engineering in Pune.",
-    url: "https://vighanahartaengineers.com/services",
+    url: "https://vighanahartaengineers.in/services",
     images: [{ url: "/services/s1.jpg" }],
   },
 };
@@ -75,8 +75,8 @@ export default function ServicesPage() {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://vighanahartaengineers.com" },
-                { "@type": "ListItem", position: 2, name: "Services", item: "https://vighanahartaengineers.com/services" },
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://vighanahartaengineers.in" },
+                { "@type": "ListItem", position: 2, name: "Services", item: "https://vighanahartaengineers.in/services" },
               ],
             },
           ]),
@@ -86,3 +86,4 @@ export default function ServicesPage() {
     </>
   );
 }
+

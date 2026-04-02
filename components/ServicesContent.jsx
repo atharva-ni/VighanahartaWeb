@@ -129,7 +129,7 @@ export default function ServicesContent() {
   return (
     <div className="min-h-screen bg-white">
       {/* Page Header */}
-      <section className="relative bg-gray-900 py-20 md:py-28 overflow-hidden">
+      <section className="relative bg-gray-900 py-14 md:py-24 overflow-hidden">
         <Image
           src="/services/s3.jpg"
           alt="Manufacturing Workshop"
@@ -153,7 +153,7 @@ export default function ServicesContent() {
               <Award className="h-3.5 w-3.5" />
               What We Do
             </span>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-3 font-[family-name:var(--font-manrope)]">
+            <h1 className="text-3xl sm:text-4xl sm:text-5xl font-bold text-white leading-tight mb-3 font-[family-name:var(--font-manrope)]">
               Precision Manufacturing &<br />Fabrication Services
             </h1>
             <p className="text-lg text-gray-300 max-w-xl mb-8">
@@ -182,7 +182,7 @@ export default function ServicesContent() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-14">
             <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">
@@ -244,7 +244,7 @@ export default function ServicesContent() {
       </section>
 
       {/* Facilities */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
             <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">
@@ -306,7 +306,7 @@ export default function ServicesContent() {
       </section>
 
       {/* CTA */}
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="relative rounded-xl overflow-hidden p-10 md:p-16 text-center">
             <Image

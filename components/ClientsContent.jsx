@@ -22,12 +22,15 @@ import {
 
 const categoryIcons = {
   All: <Layers className="h-3.5 w-3.5" />,
+  "Belt Bucket": <Factory className="h-3.5 w-3.5" />,
+  "CBR Moulds": <Tool className="h-3.5 w-3.5" />,
+  "Cover Jackets for Pump": <Wrench className="h-3.5 w-3.5" />,
   Fabrication: <Cog className="h-3.5 w-3.5" />,
-  Assembly: <Wrench className="h-3.5 w-3.5" />,
+  "Hood Pocket Ventilation": <Flame className="h-3.5 w-3.5" />,
+  "Material Handling": <Tool className="h-3.5 w-3.5" />,
   Equipment: <Tool className="h-3.5 w-3.5" />,
-  Manufacturing: <Factory className="h-3.5 w-3.5" />,
-  Welding: <Flame className="h-3.5 w-3.5" />,
-  Engineering: <Tool className="h-3.5 w-3.5" />,
+  "Structural Fabrication": <Cog className="h-3.5 w-3.5" />,
+  "Storage Systems": <Layers className="h-3.5 w-3.5" />,
 };
 
 export default function ClientsContent() {

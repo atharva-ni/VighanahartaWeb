@@ -6,13 +6,13 @@ export const metadata = {
     "Learn about Vighanaharta Engineers — ISO 9001:2015 certified precision manufacturing company in Pune. Our mission, vision, team, and 22+ years of engineering expertise in fabrication and industrial solutions.",
   keywords: ["about Vighanaharta Engineers", "manufacturing company Pune", "ISO certified manufacturer", "engineering company Maharashtra", "industrial fabrication company"],
   alternates: {
-    canonical: "https://vighanahartaengineers.com/about",
+    canonical: "https://vighanahartaengineers.in/about",
   },
   openGraph: {
     title: "About Vighanaharta Engineers",
     description:
       "ISO 9001:2015 certified, established in 2017, with 5000 sq.ft. manufacturing facility in Pune.",
-    url: "https://vighanahartaengineers.com/about",
+    url: "https://vighanahartaengineers.in/about",
     images: [{ url: "/services/logo.png" }],
   },
 };
@@ -44,8 +44,8 @@ export default function AboutPage() {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://vighanahartaengineers.com" },
-                { "@type": "ListItem", position: 2, name: "About Us", item: "https://vighanahartaengineers.com/about" },
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://vighanahartaengineers.in" },
+                { "@type": "ListItem", position: 2, name: "About Us", item: "https://vighanahartaengineers.in/about" },
               ],
             },
           ]),
@@ -55,3 +55,4 @@ export default function AboutPage() {
     </>
   );
 }
+

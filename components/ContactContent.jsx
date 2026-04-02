@@ -14,7 +14,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import emailjs from "emailjs-com";
 
 const contactInfo = [
   {
@@ -52,6 +51,7 @@ export default function ContactContent() {
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
@@ -71,32 +71,37 @@ export default function ContactContent() {
   }, [formData]);
 
   const handleSubmit = useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault();
       if (!validate()) return;
 
       setSending(true);
-      emailjs
-        .sendForm(
-          "service_oqe9z27",
-          "template_rk1kr34",
-          e.target,
-          "-KwObMCsv7NTXEu2T"
-        )
-        .then(
-          () => {
-            setSent(true);
-            setFormData({ name: "", email: "", message: "" });
-            setSending(false);
-            setTimeout(() => setSent(false), 5000);
+      setSubmitError("");
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-          () => {
-            alert("Error sending message. Please try again.");
-            setSending(false);
-          }
-        );
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          const payload = await response.json().catch(() => null);
+          throw new Error(payload?.error || "Error sending message. Please try again.");
+        }
+
+        setSent(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSent(false), 5000);
+      } catch (error) {
+        setSubmitError(error.message || "Error sending message. Please try again.");
+      } finally {
+        setSending(false);
+      }
     },
-    [validate]
+    [formData, validate]
   );
 
   return (
@@ -158,6 +163,12 @@ export default function ContactContent() {
             {sent && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-sm font-medium">
                 Message sent successfully! We&apos;ll get back to you soon.
+              </div>
+            )}
+
+            {submitError && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm font-medium">
+                {submitError}
               </div>
             )}
 

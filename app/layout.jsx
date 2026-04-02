@@ -19,7 +19,7 @@ const manrope = Manrope({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://vighanahartaengineers.com"),
+  metadataBase: new URL("https://vighanahartaengineers.in"),
   title: {
     default: "Vighanaharta Engineers | Precision Manufacturing & Fabrication in Pune",
     template: "%s | Vighanaharta Engineers",
@@ -49,7 +49,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://vighanahartaengineers.com",
+    url: "https://vighanahartaengineers.in",
     siteName: "Vighanaharta Engineers",
     title: "Vighanaharta Engineers | Precision Manufacturing & Fabrication",
     description:
@@ -83,7 +83,7 @@ export const metadata = {
   },
   verification: {},
   alternates: {
-    canonical: "https://vighanahartaengineers.com",
+    canonical: "https://vighanahartaengineers.in",
   },
 };
 
@@ -95,7 +95,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en\" className={`${inter.variable} ${manrope.variable}`}>
+    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
       <head>
         <link rel="icon" href="/services/logo1.png" />
       </head>
@@ -112,3 +112,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
