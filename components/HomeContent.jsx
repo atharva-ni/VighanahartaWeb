@@ -101,8 +101,10 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Building Excellence,{" "}
-                <span className="text-primary-600">Engineering Trust</span>
+                Precision Manufacturing &amp; Fabrication in Pune
+                <span className="block text-primary-600">
+                  for Reliable Industrial Output
+                </span>
               </motion.h1>
               <motion.p
                 className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 max-w-lg leading-relaxed"
@@ -110,8 +112,9 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.35 }}
               >
-                Precision hardware & fabrication solutions with end-to-end
-                manufacturing capabilities. 22+ years of expertise.
+                ISO 9001:2015 certified manufacturing partner in Pune offering
+                CNC laser cutting, bending, welding, and conveyor fabrication
+                for high-accuracy industrial applications.
               </motion.p>
               <motion.div
                 className="flex flex-wrap gap-3 mb-10"
@@ -200,6 +203,120 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="py-12 md:py-20 bg-gray-50" aria-labelledby="home-seo-overview">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto">
+            <h2
+              id="home-seo-overview"
+              className="text-3xl sm:text-4xl font-bold text-gray-900 mb-5"
+            >
+              Industrial Manufacturing Expertise from Pune, India
+            </h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Vighanaharta Engineers is a precision manufacturing Pune company
+              supporting OEMs, EPC contractors, and process industries with
+              dependable fabrication and component development. Our team works
+              from concept to dispatch, helping customers reduce lead time,
+              improve repeatability, and maintain consistent product quality
+              across medium and high-volume requirements.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-8">
+              As an industrial fabrication India supplier based in Chikhali,
+              Pune, we combine engineering planning, production control, and
+              inspection discipline to deliver practical, production-ready
+              solutions. Whether your project requires one-off prototypes,
+              recurring fabricated assemblies, or conveyor sub-systems, we
+              focus on dimensional accuracy, process reliability, and clear
+              communication at every stage.
+            </p>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+              <article className="bg-white rounded-xl border border-gray-200 p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Fabrication Services Pune Manufacturers Trust
+                </h3>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Our production capabilities are designed for demanding shop
+                  floor conditions where quality and delivery commitments are
+                  equally critical.
+                </p>
+                <ul className="space-y-2 text-gray-700 list-disc pl-5">
+                  <li>
+                    CNC laser cutting Pune for consistent edge quality and tight
+                    tolerances.
+                  </li>
+                  <li>
+                    Sheet metal bending and formed component manufacturing.
+                  </li>
+                  <li>
+                    MIG, spot, and fabrication welding for structural assemblies.
+                  </li>
+                  <li>
+                    Conveyor frames, supports, and material handling components.
+                  </li>
+                </ul>
+              </article>
+
+              <article className="bg-white rounded-xl border border-gray-200 p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Why Leading Buyers Choose Us
+                </h3>
+                <ul className="space-y-2 text-gray-700 list-disc pl-5">
+                  <li>ISO 9001:2015 process discipline and documentation.</li>
+                  <li>22+ years of fabrication and manufacturing experience.</li>
+                  <li>Batch-to-batch quality consistency with practical QA checks.</li>
+                  <li>
+                    Flexible execution for prototypes, repeat orders, and project
+                    scale-up.
+                  </li>
+                  <li>
+                    Transparent engineering coordination from RFQ to final
+                    dispatch.
+                  </li>
+                </ul>
+              </article>
+            </div>
+
+            <article className="bg-white rounded-xl border border-gray-200 p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                Industries Served Across Maharashtra and India
+              </h3>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                We support customers in automotive, process engineering,
+                intralogistics, and heavy equipment segments that require robust
+                fabrication quality and predictable turnaround.
+              </p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-700 list-disc pl-5 mb-6">
+                <li>Automotive components and auxiliary systems</li>
+                <li>Material handling and conveyor equipment</li>
+                <li>Process plant structures and utility supports</li>
+                <li>Industrial machinery and engineered assemblies</li>
+              </ul>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 text-primary-700 font-medium hover:text-primary-800"
+                >
+                  Explore Fabrication Services <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 text-primary-700 font-medium hover:text-primary-800"
+                >
+                  CNC Manufacturing Solutions <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 text-primary-700 font-medium hover:text-primary-800"
+                >
+                  Discuss Your Project Requirements <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {/* Services Overview */}
       <section className="py-12 md:py-20 bg-white">
         <div className="container mx-auto px-5 sm:px-6">
@@ -222,18 +339,21 @@ export default function HomePage() {
                 description:
                   "Tailored engineering solutions for your specific manufacturing needs with precision CAD design.",
                 icon: <Wrench className="h-8 w-8" />,
+                cta: "Design-Led Engineering Support",
               },
               {
                 title: "Precision Manufacturing",
                 description:
                   "High-quality production with CNC laser cutting, bending, and strict quality control standards.",
                 icon: <Building2 className="h-8 w-8" />,
+                cta: "See CNC Manufacturing Capabilities",
               },
               {
                 title: "Technical Consultation",
                 description:
                   "Expert advice and engineering support from concept to completion for industrial projects.",
                 icon: <Users className="h-8 w-8" />,
+                cta: "Get Consultation for Your Project",
               },
             ].map((service, idx) => (
               <motion.div
@@ -257,7 +377,7 @@ export default function HomePage() {
                   href="/services"
                   className="inline-flex items-center gap-1 mt-4 text-primary-600 font-medium text-sm hover:text-primary-700 transition-colors"
                 >
-                  Learn More <ArrowRight className="h-4 w-4" />
+                  {service.cta} <ArrowRight className="h-4 w-4" />
                 </Link>
               </motion.div>
             ))}

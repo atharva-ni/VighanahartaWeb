@@ -21,11 +21,11 @@ const manrope = Manrope({
 export const metadata = {
   metadataBase: new URL("https://www.vighanahartaengineers.in"),
   title: {
-    default: "Vighanaharta Engineers | Precision Manufacturing & Fabrication in Pune",
+    default: "Precision Manufacturing in Pune | Vighanaharta Engineers",
     template: "%s | Vighanaharta Engineers",
   },
   description:
-    "ISO 9001:2015 certified precision manufacturing and fabrication in Pune with CNC laser cutting, bending, welding, conveyor, and material handling solutions.",
+    "ISO 9001:2015 certified partner for precision manufacturing Pune, CNC laser cutting, bending, welding, and industrial fabrication India solutions.",
   keywords: [
     "manufacturing company in Pune",
     "precision manufacturing Pune",
@@ -51,24 +51,29 @@ export const metadata = {
     locale: "en_IN",
     url: "https://www.vighanahartaengineers.in",
     siteName: "Vighanaharta Engineers",
-    title: "Vighanaharta Engineers | Precision Manufacturing & Fabrication",
+    title: "Precision Manufacturing in Pune | Vighanaharta Engineers",
     description:
-      "ISO 9001:2015 certified manufacturing, fabrication, and engineering solutions in Pune. 22+ years of expertise.",
+      "Precision manufacturing and fabrication services from Pune including CNC laser cutting, welding, bending, and conveyor solutions.",
     images: [
       {
-        url: "/services/logo.png",
-        width: 800,
-        height: 600,
-        alt: "Vighanaharta Engineers",
+        url: "/services/s1.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Precision manufacturing and fabrication facility in Pune",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vighanaharta Engineers | Precision Manufacturing & Fabrication",
+    title: "Precision Manufacturing in Pune | Vighanaharta Engineers",
     description:
-      "ISO 9001:2015 certified manufacturing, fabrication, and engineering solutions in Pune.",
-    images: ["/services/logo.png"],
+      "CNC laser cutting, bending, welding, and industrial fabrication services from Vighanaharta Engineers, Pune.",
+    images: ["/services/s1.jpg"],
+  },
+  icons: {
+    icon: [{ url: "/services/logo1.png", type: "image/png" }],
+    shortcut: ["/services/logo1.png"],
+    apple: [{ url: "/services/logo1.png", sizes: "180x180", type: "image/png" }],
   },
   robots: {
     index: true,
@@ -101,9 +106,6 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
-      <head>
-        <link rel="icon" href="/services/logo1.png" />
-      </head>
       <body className={`${inter.className} antialiased`}>
         <div className="flex flex-col min-h-screen">
           <ScrollProgress />
