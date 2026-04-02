@@ -3,7 +3,7 @@ import ServicesContent from "@/components/ServicesContent";
 export const metadata = {
   title: "Services",
   description:
-    "Vighanaharta Engineers offers CNC laser cutting, bending, welding, material handling equipment, conveyor systems, fabrication services, and more. Full-service precision manufacturing in Pune, Maharashtra.",
+    "Explore CNC laser cutting, bending, welding, conveyor systems, and fabrication services from Vighanaharta Engineers in Pune, Maharashtra.",
   keywords: ["CNC laser cutting Pune", "welding services", "material handling equipment", "belt bucket conveyors", "fabrication services Pune", "industrial manufacturing"],
   alternates: {
     canonical: "https://www.vighanahartaengineers.in/services",

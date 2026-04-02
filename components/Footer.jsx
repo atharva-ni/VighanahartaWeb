@@ -7,7 +7,6 @@ import {
   Mail,
   Facebook,
   Linkedin,
-  ArrowRight,
   Award,
 } from "lucide-react";
 
@@ -30,26 +29,6 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
-      {/* CTA Strip */}
-      <div className="bg-primary-700">
-        <div className="container mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div>
-            <h3 className="text-white font-bold text-lg">
-              Ready to start your project?
-            </h3>
-            <p className="text-primary-100 text-sm">
-              Get a free consultation from our engineering experts.
-            </p>
-          </div>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-primary-700 px-6 py-3 rounded-lg font-semibold text-sm hover:bg-primary-50 transition-colors"
-          >
-            Get in Touch <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </div>
-
       {/* Main Footer */}
       <div className="container mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-14">

@@ -3,7 +3,7 @@ import ContactContent from "@/components/ContactContent";
 export const metadata = {
   title: "Contact Us",
   description:
-    "Contact Vighanaharta Engineers for precision manufacturing, fabrication, and engineering services in Pune. Located in Chikhali, Pune. Call +91 9850952181 for a free quote.",
+    "Contact Vighanaharta Engineers in Chikhali, Pune for precision manufacturing, fabrication, and engineering services with a fast project quote.",
   keywords: ["contact Vighanaharta Engineers", "manufacturing company contact Pune", "fabrication services inquiry", "engineering quote Pune"],
   alternates: {
     canonical: "https://www.vighanahartaengineers.in/contact",

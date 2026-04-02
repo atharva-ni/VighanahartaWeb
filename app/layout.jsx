@@ -25,7 +25,7 @@ export const metadata = {
     template: "%s | Vighanaharta Engineers",
   },
   description:
-    "Vighanaharta Engineers — ISO 9001:2015 certified precision manufacturing, fabrication, and engineering solutions in Pune since 2017. CNC laser cutting, bending, welding, and more.",
+    "ISO 9001:2015 certified precision manufacturing and fabrication in Pune with CNC laser cutting, bending, welding, conveyor, and material handling solutions.",
   keywords: [
     "manufacturing company in Pune",
     "precision manufacturing Pune",
@@ -81,7 +81,12 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {},
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: {
+      "msvalidate.01": process.env.BING_SITE_VERIFICATION,
+    },
+  },
   alternates: {
     canonical: "https://www.vighanahartaengineers.in",
   },

@@ -41,9 +41,9 @@ export default function Header() {
       >
         <nav className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
           <Link href="/" className="flex-shrink-0">
-            <div className="relative h-12 w-36 sm:h-14 sm:w-44">
+            <div className="relative h-11 w-56 sm:h-12 sm:w-64 md:h-14 md:w-72">
               <Image
-                src="/services/logo.png"
+                src="/services/logo-cropped.png"
                 alt="Vighanaharta Engineers"
                 fill
                 priority

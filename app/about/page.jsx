@@ -3,7 +3,7 @@ import AboutContent from "@/components/AboutContent";
 export const metadata = {
   title: "About Us",
   description:
-    "Learn about Vighanaharta Engineers — ISO 9001:2015 certified precision manufacturing company in Pune. Our mission, vision, team, and 22+ years of engineering expertise in fabrication and industrial solutions.",
+    "Learn about Vighanaharta Engineers, an ISO 9001:2015 certified manufacturing company in Pune with 22+ years of fabrication and industrial expertise.",
   keywords: ["about Vighanaharta Engineers", "manufacturing company Pune", "ISO certified manufacturer", "engineering company Maharashtra", "industrial fabrication company"],
   alternates: {
     canonical: "https://www.vighanahartaengineers.in/about",

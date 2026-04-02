@@ -3,7 +3,7 @@ import ClientsContent from "@/components/ClientsContent";
 export const metadata = {
   title: "Clients & Portfolio",
   description:
-    "View Vighanaharta Engineers' portfolio of successful manufacturing projects and trusted clients including Mahindra, Thermax, Beumer, Forbes Marshall, and more. Industrial fabrication showcase.",
+    "See Vighanaharta Engineers' manufacturing portfolio and trusted clients like Mahindra, Thermax, Beumer, and Forbes Marshall across industries.",
   keywords: ["Vighanaharta Engineers clients", "manufacturing portfolio Pune", "industrial fabrication projects", "engineering project showcase"],
   alternates: {
     canonical: "https://www.vighanahartaengineers.in/clients",
