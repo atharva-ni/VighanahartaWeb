@@ -55,3 +55,20 @@
   animation: marquee 20s linear infinite;
 }
 
+/* Mobile layout consistency: unified side padding and section spacing */
+@media (max-width: 639px) {
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  section[class*="py-10"],
+  section[class*="py-12"],
+  section[class*="py-14"],
+  section[class*="py-16"],
+  section[class*="py-20"] {
+    padding-top: 2.75rem !important;
+    padding-bottom: 2.75rem !important;
+  }
+}
+

@@ -74,7 +74,7 @@ export default function HomePage() {
   const featuredProjects = useMemo(() => portfolio.slice(0, 6), []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero */}
       <section className="relative bg-white overflow-hidden" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.04) 1px, transparent 0)', backgroundSize: '40px 40px' }}>
         <div className="container mx-auto px-4 sm:px-6">
@@ -93,7 +93,10 @@ export default function HomePage() {
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
                 <Award className="h-3 w-3 flex-shrink-0" />
-                ISO 9001:2015 Certified &bull; 22+ Years of Excellence
+                <span className="sm:hidden">ISO 9001:2015 Certified</span>
+                <span className="hidden sm:inline">
+                  ISO 9001:2015 Certified &bull; 22+ Years of Excellence
+                </span>
               </motion.span>
               <motion.h1
                 className="text-3xl sm:text-4xl lg:text-[52px] font-bold text-gray-900 leading-[1.1] tracking-tight mb-4 sm:mb-5 font-[family-name:var(--font-manrope)]"
@@ -203,119 +206,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-12 md:py-20 bg-gray-50" aria-labelledby="home-seo-overview">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <h2
-              id="home-seo-overview"
-              className="text-3xl sm:text-4xl font-bold text-gray-900 mb-5"
-            >
-              Industrial Manufacturing Expertise from Pune, India
-            </h2>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Vighanaharta Engineers is a precision manufacturing Pune company
-              supporting OEMs, EPC contractors, and process industries with
-              dependable fabrication and component development. Our team works
-              from concept to dispatch, helping customers reduce lead time,
-              improve repeatability, and maintain consistent product quality
-              across medium and high-volume requirements.
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-8">
-              As an industrial fabrication India supplier based in Chikhali,
-              Pune, we combine engineering planning, production control, and
-              inspection discipline to deliver practical, production-ready
-              solutions. Whether your project requires one-off prototypes,
-              recurring fabricated assemblies, or conveyor sub-systems, we
-              focus on dimensional accuracy, process reliability, and clear
-              communication at every stage.
-            </p>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-              <article className="bg-white rounded-xl border border-gray-200 p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Fabrication Services Pune Manufacturers Trust
-                </h3>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Our production capabilities are designed for demanding shop
-                  floor conditions where quality and delivery commitments are
-                  equally critical.
-                </p>
-                <ul className="space-y-2 text-gray-700 list-disc pl-5">
-                  <li>
-                    CNC laser cutting Pune for consistent edge quality and tight
-                    tolerances.
-                  </li>
-                  <li>
-                    Sheet metal bending and formed component manufacturing.
-                  </li>
-                  <li>
-                    MIG, spot, and fabrication welding for structural assemblies.
-                  </li>
-                  <li>
-                    Conveyor frames, supports, and material handling components.
-                  </li>
-                </ul>
-              </article>
-
-              <article className="bg-white rounded-xl border border-gray-200 p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Why Leading Buyers Choose Us
-                </h3>
-                <ul className="space-y-2 text-gray-700 list-disc pl-5">
-                  <li>ISO 9001:2015 process discipline and documentation.</li>
-                  <li>22+ years of fabrication and manufacturing experience.</li>
-                  <li>Batch-to-batch quality consistency with practical QA checks.</li>
-                  <li>
-                    Flexible execution for prototypes, repeat orders, and project
-                    scale-up.
-                  </li>
-                  <li>
-                    Transparent engineering coordination from RFQ to final
-                    dispatch.
-                  </li>
-                </ul>
-              </article>
-            </div>
-
-            <article className="bg-white rounded-xl border border-gray-200 p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Industries Served Across Maharashtra and India
-              </h3>
-              <p className="text-gray-700 leading-relaxed mb-4">
-                We support customers in automotive, process engineering,
-                intralogistics, and heavy equipment segments that require robust
-                fabrication quality and predictable turnaround.
-              </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-700 list-disc pl-5 mb-6">
-                <li>Automotive components and auxiliary systems</li>
-                <li>Material handling and conveyor equipment</li>
-                <li>Process plant structures and utility supports</li>
-                <li>Industrial machinery and engineered assemblies</li>
-              </ul>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-2 text-primary-700 font-medium hover:text-primary-800"
-                >
-                  Explore Fabrication Services <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-2 text-primary-700 font-medium hover:text-primary-800"
-                >
-                  CNC Manufacturing Solutions <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 text-primary-700 font-medium hover:text-primary-800"
-                >
-                  Discuss Your Project Requirements <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+     
 
       {/* Services Overview */}
       <section className="py-12 md:py-20 bg-white">
@@ -404,7 +295,7 @@ export default function HomePage() {
             {featuredProjects.map((project, idx) => (
               <motion.div
                 key={project.id}
-                className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
+                className={`group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow ${idx > 1 ? "hidden sm:block" : "block"}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

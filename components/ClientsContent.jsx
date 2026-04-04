@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useRef, useCallback } from "react";
+import { useState, useMemo, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -38,7 +38,7 @@ export default function ClientsContent() {
 
   const categories = useMemo(() => {
     const cats = new Set(portfolio.map((p) => p.category));
-    return ["All", ...Array.from(cats)];
+    return ["All", ...Array.from(cats).sort((a, b) => a.localeCompare(b))];
   }, []);
 
   const filteredProjects = useMemo(() => {
@@ -50,10 +50,17 @@ export default function ClientsContent() {
 
   const scroll = useCallback((dir) => {
     if (!scrollRef.current) return;
-    const cardWidth = scrollRef.current.querySelector("div")?.offsetWidth || 300;
+    const cardWidth =
+      scrollRef.current.querySelector("[data-portfolio-card='true']")
+        ?.offsetWidth || 300;
     const amount = cardWidth + 20; // card width + gap
     scrollRef.current.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
   }, []);
+
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
+  }, [activeCategory]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -108,18 +115,21 @@ export default function ClientsContent() {
             </p>
 
             {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-2">
+            <div
+              className="flex sm:flex-wrap justify-start sm:justify-center gap-2 overflow-x-auto sm:overflow-x-visible -mx-4 px-4 sm:mx-0 sm:px-0 pb-1 sm:pb-0 scrollbar-hide"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
                     activeCategory === cat
                       ? "bg-primary-600 text-white shadow-md shadow-primary-600/25"
                       : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
                   }`}
                 >
-                  {categoryIcons[cat]}
+                  {categoryIcons[cat] || categoryIcons.All}
                   {cat}
                 </button>
               ))}
@@ -146,7 +156,8 @@ export default function ClientsContent() {
                 {filteredProjects.map((project, idx) => (
                   <motion.div
                     key={project.id}
-                    className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 bg-white flex-shrink-0 snap-start w-[calc(50%-10px)] sm:w-[calc(33.333%-14px)] lg:w-[calc(25%-15px)]"
+                    data-portfolio-card="true"
+                    className="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 bg-white flex-shrink-0 snap-start w-[78vw] sm:w-[calc(33.333%_-_14px)] lg:w-[calc(25%_-_15px)]"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}

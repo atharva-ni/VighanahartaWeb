@@ -259,11 +259,14 @@ export default function ServicesContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            className="grid grid-flow-col auto-cols-[85%] sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto sm:overflow-x-visible -mx-4 px-4 sm:mx-0 sm:px-0 pb-2 sm:pb-0 scrollbar-hide"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             {facilities.map((facility, index) => (
               <motion.div
                 key={facility.id}
-                className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300"
+                className="group min-w-0 bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

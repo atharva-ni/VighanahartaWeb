@@ -228,11 +228,40 @@ export default function AboutContent() {
               services for automobile, engineering, and civil sectors.
             </motion.p>
 
-            {/* Horizontal Timeline */}
+            {/* Timeline */}
             <div className="relative">
-              {/* Horizontal line */}
+              {[
+                { year: "2017", title: "Company Founded", desc: "Established manufacturing operations in Pune" },
+                { year: "2019", title: "Expanded Manufacturing", desc: "Increased shed and open area capacity" },
+                { year: "2022", title: "ISO Certification", desc: "Achieved international quality standards" },
+                { year: "2024", title: "500+ Projects", desc: "Serving 50+ industry partners across India" },
+                { year: "2026", title: "Continued Growth", desc: "Expanding capabilities and client partnerships" },
+              ].map((item, idx, arr) => (
+                <motion.div
+                  key={`mobile-${idx}`}
+                  className="relative md:hidden pl-12 pb-5"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1, duration: 0.35 }}
+                >
+                  {idx !== arr.length - 1 && (
+                    <div className="absolute left-4 top-9 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 to-primary-200" />
+                  )}
+                  <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-primary-600 text-white flex items-center justify-center text-[10px] font-bold shadow-md ring-4 ring-primary-100">
+                    {item.year.slice(2)}
+                  </div>
+                  <div className="rounded-xl border border-primary-100 bg-white p-4 shadow-sm">
+                    <span className="text-primary-600 font-semibold text-xs tracking-wide uppercase">{item.year}</span>
+                    <h3 className="text-base font-bold text-gray-900 mt-1">{item.title}</h3>
+                    <p className="text-gray-600 text-sm mt-1 leading-relaxed">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+
+              {/* Desktop timeline (unchanged layout) */}
               <div className="absolute top-5 left-0 right-0 h-0.5 bg-gray-200 hidden md:block" />
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+              <div className="hidden md:grid md:grid-cols-5 gap-6">
                 {[
                   { year: "2017", title: "Company Founded", desc: "Established manufacturing operations in Pune" },
                   { year: "2019", title: "Expanded Manufacturing", desc: "Increased shed and open area capacity" },
@@ -291,7 +320,7 @@ export default function AboutContent() {
                   sizes="128px"
                 />
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Nilesh</h3>
+              <h3 className="text-xl font-bold text-gray-900">Nilesh Nighot</h3>
               <p className="text-primary-600 font-medium">
                 Proprietor & Mechanical Engineer
               </p>
@@ -300,9 +329,9 @@ export default function AboutContent() {
             {/* Team */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
               {[
-                { name: "Swati", role: "Accountant" },
-                { name: "Avinash", role: "Plant 1 Manager" },
-                { name: "Bharat", role: "Plant 2 Manager" },
+                { name: "Swati Nighot", role: "Accountant" },
+                { name: "Avinash Jadhav", role: "Plant 1 Manager" },
+                { name: "Bharat Surywanshi", role: "Plant 2 Manager" },
               ].map((member, idx) => (
                 <motion.div
                   key={idx}
@@ -328,68 +357,6 @@ export default function AboutContent() {
                 </motion.div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Work Domain */}
-      <section className="py-12 md:py-20 bg-gray-50">
-        <div className="container mx-auto px-5 md:px-6">
-          <div className="text-center mb-12">
-            <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">
-              Expertise
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2 text-gray-900">
-              Our Work Domain
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {[
-              {
-                icon: <Wrench className="h-6 w-6" />,
-                title: "Fabrication & Manufacturing",
-                items: [
-                  "Material handling & storage equipment",
-                  "Logistics equipment",
-                  "Fabrication support services",
-                  "Structural fabrication",
-                ],
-              },
-              {
-                icon: <Cog className="h-6 w-6" />,
-                title: "Engineering Solutions",
-                items: [
-                  "Belt-bucket conveyors manufacturing",
-                  "Ventilation systems manufacturing",
-                  "Pump assembly parts manufacturing",
-                  "Material storage systems",
-                ],
-              },
-            ].map((domain, idx) => (
-              <motion.div
-                key={idx}
-                className="bg-white p-7 rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-300"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 rounded-lg bg-primary-100 text-primary-700">
-                    {domain.icon}
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900">{domain.title}</h3>
-                </div>
-                <ul className="space-y-3 text-gray-600 text-sm">
-                  {domain.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5">
-                      <CheckCircle className="h-4 w-4 text-primary-500 flex-shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>

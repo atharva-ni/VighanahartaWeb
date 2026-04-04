@@ -15,7 +15,7 @@ const steps = [
     title: "Consultation & Planning",
     description:
       "Understanding your requirements, specs, and project goals with feasibility analysis.",
-    icon: <ClipboardList className="w-6 h-6 text-white" />,
+    icon: <ClipboardList className="w-4 h-4 md:w-5 md:h-5 text-white" />,
     color: "bg-blue-500",
     border: "border-blue-500",
   },
@@ -23,7 +23,7 @@ const steps = [
     title: "Design & Engineering",
     description:
       "Precise CAD models and technical drawings to meet your exact standards.",
-    icon: <PenTool className="w-6 h-6 text-white" />,
+    icon: <PenTool className="w-4 h-4 md:w-5 md:h-5 text-white" />,
     color: "bg-indigo-500",
     border: "border-indigo-500",
   },
@@ -31,7 +31,7 @@ const steps = [
     title: "Precision Fabrication",
     description:
       "Advanced machinery and skilled craftsmanship to produce high-quality components.",
-    icon: <Factory className="w-6 h-6 text-white" />,
+    icon: <Factory className="w-4 h-4 md:w-5 md:h-5 text-white" />,
     color: "bg-purple-500",
     border: "border-purple-500",
   },
@@ -39,7 +39,7 @@ const steps = [
     title: "Quality Assurance",
     description:
       "Multi-stage testing and inspection to guarantee defect-free, reliable products.",
-    icon: <BadgeCheck className="w-6 h-6 text-white" />,
+    icon: <BadgeCheck className="w-4 h-4 md:w-5 md:h-5 text-white" />,
     color: "bg-teal-500",
     border: "border-teal-500",
   },
@@ -47,7 +47,7 @@ const steps = [
     title: "Delivery & Support",
     description:
       "On-time delivery with continued technical support for seamless integration.",
-    icon: <Truck className="w-6 h-6 text-white" />,
+    icon: <Truck className="w-4 h-4 md:w-5 md:h-5 text-white" />,
     color: "bg-green-500",
     border: "border-green-500",
   },
@@ -84,11 +84,11 @@ export default function ProcessTimeline() {
 
         <div className="relative max-w-4xl mx-auto">
           {/* Background Line */}
-          <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-1 bg-gray-200 -ml-0.5" />
+          <div className="absolute left-[18px] md:left-1/2 top-0 bottom-0 w-1 bg-gray-200 -ml-0.5" />
 
           {/* Progress Line */}
           <motion.div
-            className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-1 bg-primary-600 -ml-0.5 origin-top"
+            className="absolute left-[18px] md:left-1/2 top-0 bottom-0 w-1 bg-primary-600 -ml-0.5 origin-top"
             style={{ scaleY }}
           />
 
@@ -101,9 +101,9 @@ export default function ProcessTimeline() {
                 }`}
               >
                 {/* Icon Marker */}
-                <div className="absolute left-0 md:left-1/2 w-10 h-10 rounded-full border-4 border-white shadow-md z-10 flex items-center justify-center -translate-x-[0px] md:-translate-x-1/2">
+                <div className="absolute left-0 md:left-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full border-4 border-white shadow-md z-10 flex items-center justify-center -translate-x-[0px] md:-translate-x-1/2">
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center ${step.color} shadow-lg`}
+                    className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center ${step.color} shadow-lg`}
                   >
                     {step.icon}
                   </div>
@@ -115,7 +115,7 @@ export default function ProcessTimeline() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.5, delay: index * 0.15 }}
-                  className={`ml-16 md:ml-0 md:w-[45%] bg-white p-5 rounded-xl shadow-md border-t-4 ${step.border} hover:shadow-lg transition-shadow`}
+                  className={`ml-12 w-[calc(100%-3.5rem)] md:ml-0 md:w-[45%] bg-white p-4 md:p-5 rounded-xl shadow-md border-t-4 ${step.border} hover:shadow-lg transition-shadow`}
                 >
                   <h3 className="text-xl font-bold mb-2 text-gray-800">
                     {step.title}
