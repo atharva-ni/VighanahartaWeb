@@ -74,9 +74,11 @@ export const metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/services/logo1.png", type: "image/png", sizes: "512x512" },
+      { url: "/services/logo-cropped.png", type: "image/png", sizes: "16x16" },
+      { url: "/services/logo-cropped.png", type: "image/png", sizes: "32x32" },
+      { url: "/services/logo-cropped.png", type: "image/png", sizes: "192x192" },
     ],
-    shortcut: ["/favicon.ico"],
+    shortcut: ["/services/logo-cropped.png"],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   robots: {
