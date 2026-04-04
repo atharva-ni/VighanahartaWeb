@@ -17,6 +17,7 @@ const NAV_LINKS = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [logoSrc, setLogoSrc] = useState("/services/logo-cropped.png");
   const pathname = usePathname();
 
   useEffect(() => {
@@ -43,10 +44,14 @@ export default function Header() {
           <Link href="/" className="flex-shrink-0">
             <div className="relative h-11 w-56 sm:h-12 sm:w-64 md:h-14 md:w-72">
               <Image
-                src="/services/logo-cropped.png"
+                src={logoSrc}
                 alt="Vighanaharta Engineers"
                 fill
                 priority
+                unoptimized
+                onError={() => {
+                  if (logoSrc !== "/services/logo.png") setLogoSrc("/services/logo.png");
+                }}
                 className="object-contain object-left"
               />
             </div>
