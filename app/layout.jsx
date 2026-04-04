@@ -20,6 +20,7 @@ const manrope = Manrope({
 
 export const metadata = {
   metadataBase: new URL("https://www.vighanahartaengineers.in"),
+  manifest: "/site.webmanifest",
   title: {
     default: "Precision Manufacturing in Pune | Vighanaharta Engineers",
     template: "%s | Vighanaharta Engineers",
@@ -71,9 +72,12 @@ export const metadata = {
     images: ["/services/s1.jpg"],
   },
   icons: {
-    icon: [{ url: "/services/logo1.png", type: "image/png" }],
-    shortcut: ["/services/logo1.png"],
-    apple: [{ url: "/services/logo1.png", sizes: "180x180", type: "image/png" }],
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/services/logo1.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   robots: {
     index: true,
