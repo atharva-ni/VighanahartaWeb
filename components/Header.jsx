@@ -43,7 +43,7 @@ export default function Header() {
           <Link href="/" className="flex-shrink-0">
             <div className="relative h-11 w-56 sm:h-12 sm:w-64 md:h-14 md:w-72">
               <Image
-                src="/services/logo-cropped.png"
+                src="/logo/mainlogotransparent.svg"
                 alt="Vighanaharta Engineers"
                 fill
                 priority

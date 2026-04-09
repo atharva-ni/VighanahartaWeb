@@ -13,7 +13,7 @@ export const metadata = {
     description:
       "Our portfolio of successful projects and trusted clients across automotive, energy, and manufacturing industries.",
     url: "https://www.vighanahartaengineers.in/clients",
-    images: [{ url: "/services/logo.png" }],
+    images: [{ url: "/logo/mainlogotransparent.png" }],
   },
 };
 

@@ -13,7 +13,7 @@ export const metadata = {
     description:
       "ISO 9001:2015 certified, established in 2017, with 5000 sq.ft. manufacturing facility in Pune.",
     url: "https://www.vighanahartaengineers.in/about",
-    images: [{ url: "/services/logo.png" }],
+    images: [{ url: "/logo/mainlogotransparent.png" }],
   },
 };
 

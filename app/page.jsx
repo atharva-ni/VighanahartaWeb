@@ -27,7 +27,7 @@ const industrialBusinessSchema = {
     "https://www.vighanahartaengineers.in/services/s1.jpg",
     "https://www.vighanahartaengineers.in/services/s2.jpg",
   ],
-  logo: "https://www.vighanahartaengineers.in/services/logo.png",
+  logo: "https://www.vighanahartaengineers.in/logo/mainlogotransparent.png",
   description:
     "Industrial manufacturing company in Pune delivering precision manufacturing and fabrication services including CNC laser cutting, bending, welding, and conveyor solutions.",
   telephone: "+91-98509-52181",
